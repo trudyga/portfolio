@@ -40,6 +40,20 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        exclude: /node_modules/,
+        include: path.join(__dirname, 'public'),
+        use: [
+          {
+            loader: 'file-loader?name=public/images/[name].[ext]',
+          },
+        ],
+      },
+      {
+        test: /\.glsl$/,
+        use: 'raw-loader',
+      },
     ],
   },
   plugins: [htmlPlugin],

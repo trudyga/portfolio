@@ -1,5 +1,16 @@
 // @flow
-import { SphereBufferGeometry, MeshBasicMaterial, Mesh, Object3D } from 'three';
+import {
+  Geometry,
+  SphereGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  Object3D,
+  Line,
+  LineSegments,
+  ShaderMaterial,
+  Color,
+  AdditiveBlending,
+} from 'three';
 import HyperSphereColorPalette from './HyperSphereColorPalette';
 import HyperSpherePoint from './HyperSpherePoint';
 import HyperSphereLine from './HyperSphereLine';
@@ -42,7 +53,7 @@ class HyperSphere {
     const { pointRadius } = this.options;
     this.points = this.getPoints();
     this.spherePoints = this.points.map(({ x, y, z, color }) => {
-      const geometry = new SphereBufferGeometry(pointRadius);
+      const geometry = new SphereGeometry(pointRadius);
       const material = new MeshBasicMaterial({ color });
       const sphere = new Mesh(geometry, material);
       sphere.position.x = x;
@@ -61,16 +72,78 @@ class HyperSphere {
   }
 
   constructSphere(): Object3D {
+    const { colorPalete } = this.options;
     const group = new Object3D();
+    const pointsGeometry = new Geometry();
 
-    this.spherePoints.forEach(mesh => group.add(mesh));
+    const primaryPointsGeometry = new Geometry();
+    const primaryLinesGeometry = new Geometry();
+    const secondaryPointsGeometry = new Geometry();
+    const secondaryLinesGeometry = new Geometry();
+    const neturalPointsGeometry = new Geometry();
+    const neturalLinesGeometry = new Geometry();
+
+    this.spherePoints.forEach(mesh => pointsGeometry.mergeMesh(mesh));
 
     this.lines.forEach(line => group.add(line.value));
 
     this.clusters.forEach(cluster => {
-      cluster.meshPoints.forEach(mesh => group.add(mesh));
-      cluster.meshLines.forEach(mesh => group.add(mesh));
+      cluster
+        .getMeshPoints(colorPalete.primary)
+        .forEach(mesh => primaryPointsGeometry.mergeMesh(mesh));
+      cluster
+        .getMeshPoints(colorPalete.secondary)
+        .forEach(mesh => secondaryPointsGeometry.mergeMesh(mesh));
+      cluster
+        .getMeshPoints(colorPalete.neutral)
+        .forEach(mesh => neturalPointsGeometry.mergeMesh(mesh));
+
+      cluster
+        .getMeshLines(colorPalete.primary)
+        .forEach(mesh => primaryLinesGeometry.merge(mesh.geometry));
+      cluster
+        .getMeshLines(colorPalete.secondary)
+        .forEach(mesh => secondaryLinesGeometry.merge(mesh.geometry));
+      cluster
+        .getMeshLines(colorPalete.neutral)
+        .forEach(mesh => neturalLinesGeometry.merge(mesh.geometry));
     });
+    const pointsMaterial = new ShaderMaterial({
+      uniforms: {
+        color: { value: new Color(0xffffff) },
+        opacity: { value: 1 },
+      },
+      fragmentShader: `
+      void main() {
+    		gl_FragColor = vec4(0.4, 0.4, 1.0, 1.0);
+      }
+      `,
+      blending: AdditiveBlending,
+      depthTest: false,
+      transparent: true,
+    });
+    group.add(
+      new Mesh(primaryPointsGeometry, new MeshBasicMaterial({ color: colorPalete.primary }))
+    );
+    group.add(
+      new Mesh(secondaryPointsGeometry, new MeshBasicMaterial({ color: colorPalete.secondary }))
+    );
+    group.add(
+      new Mesh(neturalPointsGeometry, new MeshBasicMaterial({ color: colorPalete.neutral }))
+    );
+    group.add(
+      new LineSegments(primaryLinesGeometry, new MeshBasicMaterial({ color: colorPalete.primary }))
+    );
+    group.add(
+      new LineSegments(
+        secondaryLinesGeometry,
+        new MeshBasicMaterial({ color: colorPalete.secondary })
+      )
+    );
+    group.add(
+      new LineSegments(neturalLinesGeometry, new MeshBasicMaterial({ color: colorPalete.neutral }))
+    );
+    group.add(new Mesh(pointsGeometry, pointsMaterial));
     return group;
   }
 
@@ -88,7 +161,7 @@ class HyperSphere {
     const { pointRadius, colorPalete } = this.options;
     // duplication of maxNearestDistance
     const maxNearestDistance = findMaxNearestDistance(this.points);
-    const distance = maxNearestDistance * 0.3;
+    const distance = maxNearestDistance * 0.1;
     return this.points.map(point => {
       const { x, y, z, color } = point;
       const leftBottom = new HyperSpherePoint({

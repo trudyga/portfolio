@@ -1,6 +1,6 @@
 // @flow
 import * as Chance from 'chance';
-import { SphereBufferGeometry, MeshBasicMaterial, Mesh } from 'three';
+import { SphereGeometry, MeshBasicMaterial, Mesh } from 'three';
 import HyperSpherePoint from './HyperSpherePoint';
 import HyperSphereLine from './HyperSphereLine';
 import HyperSphereColorPalette from './HyperSphereColorPalette';
@@ -23,11 +23,11 @@ class HyperSpherePointCluster {
 
   points: Array<HyperSpherePoint>;
 
-  meshPoints: Array<Mesh>;
+  // meshPoints: Array<Mesh>;
 
   lines: Array<HyperSphereLine>;
 
-  meshLines: Array<Mesh>;
+  // meshLines: Array<Mesh>;
 
   constructor(
     leftBottom: HyperSpherePoint,
@@ -39,16 +39,17 @@ class HyperSpherePointCluster {
     this.options = options;
     const { pointsAmount, colorPalete } = this.options;
     this.points = RandomAreaPoints(leftBottom, rightTop, pointsAmount, colorPalete);
-    this.meshPoints = this.getMeshPoints();
+    this.points.push(this.options.anchor);
+    // this.meshPoints = this.getMeshPoints();
     this.lines = this.getLines();
-    this.meshLines = this.getMeshLines();
+    // this.meshLines = this.getMeshLines();
   }
 
-  getMeshPoints(): Array<Mesh> {
+  getMeshPoints(color: string): Array<Mesh> {
     const { pointRadius } = this.options;
-    return this.points.map(point => {
+    return this.points.filter(p => p.color === color).map(point => {
       const material = new MeshBasicMaterial({ color: point.color });
-      const sphereGeometry = new SphereBufferGeometry(pointRadius);
+      const sphereGeometry = new SphereGeometry(pointRadius);
       const sphere = new Mesh(sphereGeometry, material);
       sphere.position.x = point.x;
       sphere.position.y = point.y;
@@ -78,8 +79,8 @@ class HyperSpherePointCluster {
     return lines;
   }
 
-  getMeshLines(): Array<Mesh> {
-    return this.lines.map(line => line.value);
+  getMeshLines(color: string): Array<Mesh> {
+    return this.lines.filter(l => l.startPoint.color === color).map(line => line.value);
   }
 }
 

@@ -7,6 +7,8 @@ class HyperSphereColorPalette {
 
   neutral: string;
 
+  index: string;
+
   constructor(
     { primary, secondary, neutral }: any = {
       primary: '#e83b6c',
