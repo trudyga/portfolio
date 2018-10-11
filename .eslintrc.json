@@ -4,6 +4,9 @@
         "commonjs": true,
         "es6": true
     },
+    "globals": {
+        "PRODUCTION": true
+    },
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {

@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Scene from './components/background/Scene';
+import IndexPage from './pages/IndexPage';
 import './index.css';
 
-const Index = () => (
-  <div>
-    <Scene />
-  </div>
-);
+const Index = () => <IndexPage />;
 
 ReactDOM.render(<Index />, document.getElementById('index'));

@@ -1,22 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import WebGL from './utils/WebGL';
 // import HyperSphere from './objects/HyperSphere';
 import Galaxy from './Galaxy';
 
-class ThreeScene extends Component {
+type Props = {
+  fullScreen?: boolean,
+};
+class ThreeScene extends Component<Props> {
+  static defaultProps = {
+    fullScreen: true,
+  };
+
   componentDidMount() {
+    const { fullScreen } = this.props;
     window.addEventListener('resize', this.handleResize, true);
-    const width = this.mount.clientWidth;
-    const height = this.mount.clientHeight;
+    const width = fullScreen ? window.innerWidth : this.mount.clientWidth;
+    const height = fullScreen ? window.innerHeight : this.mount.clientHeight;
 
     // ADD SCENE
     this.scene = new THREE.Scene();
 
     // ADD CAMERA
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 140;
+    this.camera.position.z = 50;
 
     // ADD RENDERER
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -25,18 +33,11 @@ class ThreeScene extends Component {
     this.mount.appendChild(this.renderer.domElement);
 
     // ADD Stats
-    if (!process.env.production) {
+    if (!PRODUCTION) {
       this.stats = new Stats();
       this.stats.showPanel(0);
-      this.mount.appendChild(this.stats.dom);
+      this.statsMount.appendChild(this.stats.dom);
     }
-
-    // ADD CUBE
-    const geometry = new THREE.SphereGeometry(0.1);
-    const material = new THREE.MeshBasicMaterial({ color: '#fff' });
-    this.cube = new THREE.Mesh(geometry, material);
-    this.scene.add(this.cube);
-    // this.scene.add(particleSystem);
 
     // ADD HyperSphere
     this.galaxy = new Galaxy(
@@ -63,7 +64,9 @@ class ThreeScene extends Component {
   componentWillUnmount() {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
-    this.mount.removeChild(this.stats.dom);
+    if (!PRODUCTION) {
+      this.statsMount.removeChild(this.stats.dom);
+    }
 
     window.removeEventListener('resize', this.handleResize, false);
   }
@@ -87,7 +90,7 @@ class ThreeScene extends Component {
   };
 
   animate = () => {
-    if (!process.env.production) {
+    if (!PRODUCTION) {
       this.stats.begin();
       this.stats.end();
     }
@@ -108,8 +111,9 @@ class ThreeScene extends Component {
   };
 
   handleResize = () => {
-    const width = this.mount.clientWidth;
-    const height = this.mount.clientHeight;
+    const { fullScreen } = this.props;
+    const width = fullScreen ? window.innerWidth : this.mount.clientWidth;
+    const height = fullScreen ? window.innerHeight : this.mount.clientHeight;
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
@@ -118,12 +122,22 @@ class ThreeScene extends Component {
 
   render() {
     return (
-      <div
-        style={{ position: 'fixed', width: '100%', height: '100%' }}
-        ref={mount => {
-          this.mount = mount;
-        }}
-      />
+      <Fragment>
+        <div
+          style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }}
+          ref={mount => {
+            this.mount = mount;
+          }}
+        />
+        {!PRODUCTION && (
+          <div
+            style={{ position: 'absolute' }}
+            ref={mount => {
+              this.statsMount = mount;
+            }}
+          />
+        )}
+      </Fragment>
     );
   }
 }

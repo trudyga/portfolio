@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const htmlPlugin = new HtmlWebpackPlugin({
@@ -6,7 +7,12 @@ const htmlPlugin = new HtmlWebpackPlugin({
   filename: './index.html',
 });
 
-module.exports = {
+const definePlugin = env =>
+  new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(env.production),
+  });
+
+module.exports = env => ({
   entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
@@ -56,5 +62,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [htmlPlugin],
-};
+  plugins: [htmlPlugin, definePlugin(env)],
+});
