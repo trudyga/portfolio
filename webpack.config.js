@@ -21,6 +21,12 @@ module.exports = env => ({
   resolve: {
     extensions: ['.json', '.js', '.jsx'],
   },
+  devServer: {
+    inline: true,
+    port: 8080,
+    historyApiFallback: true,
+    hot: true,
+  },
   module: {
     rules: [
       {
@@ -47,9 +53,16 @@ module.exports = env => ({
         ],
       },
       {
+        test: /\.scss$/,
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader', // compiles Sass to CSS, using Node Sass by default
+        ],
+      },
+      {
         test: /\.(png|jpg|gif)$/i,
         exclude: /node_modules/,
-        include: path.join(__dirname, 'public'),
         use: [
           {
             loader: 'file-loader?name=public/images/[name].[ext]',
