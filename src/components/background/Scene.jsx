@@ -25,6 +25,7 @@ class ThreeScene extends Component<Props> {
     // ADD CAMERA
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     this.camera.position.z = 50;
+    this.camera.position.x = -10;
 
     // ADD RENDERER
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -41,12 +42,12 @@ class ThreeScene extends Component<Props> {
 
     // ADD HyperSphere
     this.galaxy = new Galaxy(
-      70,
-      3000,
+      70 / 3,
+      3000 / 3,
       [new THREE.Color(0xe83b6c), new THREE.Color(0xff749b), new THREE.Color(0x6e5f6a)],
-      5,
-      3,
-      7.5
+      5 / 3,
+      3 / 2,
+      7.5 / 1.5
     );
 
     this.scene.add(this.galaxy.points);

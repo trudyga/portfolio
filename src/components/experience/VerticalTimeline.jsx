@@ -19,9 +19,9 @@ const Timeline = styled.div`
 
 const TimelineLine = styled.div`
   position: absolute;
-  top: -10%;
+  top: -20%;
   left: 20px;
-  height: 110%;
+  height: 140%;
   width: 4px;
   background: #e83b6c;
 
@@ -140,7 +140,8 @@ const TimelineCircle = styled.div`
 
 const AnimatedTimelineLine = posed(TimelineLine)({
   viewable: {
-    height: '110%',
+    top: '-20%',
+    height: '140%',
     transition: {
       duration: 1000,
       ease: 'easeInOut',

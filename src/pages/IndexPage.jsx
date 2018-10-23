@@ -5,6 +5,8 @@ import { Layout } from 'antd';
 import styled from 'styled-components';
 import Scene from '../components/background/Scene';
 import SiteNav from '../components/menu/SiteNav';
+import AboutMe from '../components/about/AboutMe';
+import Experience from '../components/experience/VerticalTimeline';
 
 const { Content, Sider } = Layout;
 
@@ -27,7 +29,7 @@ const StyledContent = styled(Content)`
 `;
 
 const TransparentSider = styled(Sider)`
-  background: transparent;
+  background: transparent !important;
 `;
 
 const CenteredWrapper = styled.div`
@@ -75,6 +77,63 @@ const DescriptionText = styled.p`
   font-size: 25px;
 `;
 
+const AboutMeBlock = styled.div`
+  position: relative;
+  padding: 300px 0;
+  background-image: url('/public/images/trianglify.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  ::before {
+    content: '';
+    display: block;
+    height: 15vh;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to left bottom, black 50%, transparent 50%);
+  }
+`;
+
+const ExperienceBlock = styled.div`
+  position: relative;
+  padding: 200px 0;
+
+  background-image: url('/public/images/trianglify-gray-green2.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #222;
+
+  ::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -200px;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to left top, #222 25%, transparent 50%);
+  }
+
+  ::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to left bottom, #222 25%, transparent 50%);
+  }
+`;
+
+const ProjectsBlock = styled.div`
+  background-image: url('/public/images/trianglify-bluish-green2.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #222;
+
+  padding: 400px 0;
+`;
+
 type Props = {};
 
 type State = {
@@ -96,35 +155,46 @@ class IndexPage extends Component<Props, State> {
     const { menuCollapsed } = this.state;
 
     return (
-      <FullScreenLayout style={{ flexDirection: 'row-reverse' }}>
-        <FullScreenScene />
-        <TransparentSider
-          theme="dark"
-          collapsible={false}
-          collapsed={menuCollapsed}
-          onCollapse={this.collapseMenu}
-        >
-          <SiteNav transparentBackground collapsed={menuCollapsed} />
-        </TransparentSider>
-        <StyledContent style={{ background: 'transparent' }}>
-          <CenteredWrapper>
-            <IntroductoryMessage>
-              <HeadlineMessage>
-                <FirstWord>
-                  <BackdropText>Hello</BackdropText>
-                  <PrimaryText>Hello</PrimaryText>
-                </FirstWord>
-              </HeadlineMessage>
-              <DescriptionText>My name is Vladislav Sereda.</DescriptionText>
-              <DescriptionText>
-                {`
+      <React.Fragment>
+        <FullScreenLayout style={{ flexDirection: 'row-reverse' }}>
+          <FullScreenScene />
+          <TransparentSider
+            theme="dark"
+            collapsible={false}
+            collapsed={menuCollapsed}
+            onCollapse={this.collapseMenu}
+          >
+            <SiteNav transparentBackground collapsed={menuCollapsed} />
+          </TransparentSider>
+          <StyledContent style={{ background: 'transparent' }}>
+            <CenteredWrapper>
+              <IntroductoryMessage>
+                <HeadlineMessage>
+                  <FirstWord>
+                    <BackdropText>Hello</BackdropText>
+                    <PrimaryText>Hello</PrimaryText>
+                  </FirstWord>
+                </HeadlineMessage>
+                <DescriptionText>My name is Vladislav Sereda.</DescriptionText>
+                <DescriptionText>
+                  {`
                   I'm Web developer.
                 `}
-              </DescriptionText>
-            </IntroductoryMessage>
-          </CenteredWrapper>
-        </StyledContent>
-      </FullScreenLayout>
+                </DescriptionText>
+              </IntroductoryMessage>
+            </CenteredWrapper>
+          </StyledContent>
+        </FullScreenLayout>
+        <AboutMeBlock>
+          <AboutMe />
+        </AboutMeBlock>
+        <ExperienceBlock>
+          <Experience />
+        </ExperienceBlock>
+        <ProjectsBlock>
+          <h1 style={{ textAlign: 'center' }}>It works!</h1>
+        </ProjectsBlock>
+      </React.Fragment>
     );
   }
 }
