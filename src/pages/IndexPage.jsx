@@ -5,8 +5,10 @@ import { Layout } from 'antd';
 import styled from 'styled-components';
 import Scene from '../components/background/Scene';
 import SiteNav from '../components/menu/SiteNav';
-import AboutMe from '../components/about/AboutMe';
+import AboutMe from '../components/me/AboutMe';
+import ContactMe from '../components/me/ContactMe';
 import Experience from '../components/experience/VerticalTimeline';
+import Projects from '../components/projects/Projects';
 
 const { Content, Sider } = Layout;
 
@@ -83,6 +85,7 @@ const AboutMeBlock = styled.div`
   background-image: url('/public/images/trianglify.svg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
   ::before {
     content: '';
@@ -98,40 +101,63 @@ const AboutMeBlock = styled.div`
 const ExperienceBlock = styled.div`
   position: relative;
   padding: 200px 0;
+  background: transparent;
 
-  background-image: url('/public/images/trianglify-gray-green2.svg');
+  transition: transform 0.1s ease;
+`;
+
+const ExperienceBackground = styled.div`
+  position: absolute;
+  top: -30%;
+  left: 0;
+  height: 130%;
+  width: 100%;
+  z-index: -1;
+
+  background-image: url('/public/images/trianglify_experience_2.svg');
+  background-position-x: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #222;
-
-  ::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -200px;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(to left top, #222 25%, transparent 50%);
-  }
-
-  ::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(to left bottom, #222 25%, transparent 50%);
-  }
 `;
 
 const ProjectsBlock = styled.div`
+  position: relative;
+  top: -200px;
+  background: transparent;
+  padding: 10vh 0;
+`;
+
+const ProjectsBackground = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+
+  background-image: url('/public/images/trianglify.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`;
+
+const ContactMeBlock = styled.div`
+  position: relative;
+  top: -200px;
+  background: transparent;
+  padding: 2em 0;
+`;
+
+const ContactMeBackground = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+
   background-image: url('/public/images/trianglify-bluish-green2.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #222;
-
-  padding: 400px 0;
+  background-attachment: fixed;
 `;
 
 type Props = {};
@@ -140,15 +166,65 @@ type State = {
   menuCollapsed: boolean,
 };
 
+function parallaxBlock(element, styles, parallaxSettings) {
+  const paddingTop = parseFloat(styles.getPropertyValue('padding-top'));
+  const marginTop = parseFloat(styles.getPropertyValue('margin-top'));
+
+  const elementRect = element.getBoundingClientRect();
+  const windowHeigth = window.innerHeight;
+
+  const percentScrolled = Math.min(
+    Math.max(0, (windowHeigth - elementRect.top + paddingTop + marginTop) / windowHeigth),
+    1
+  );
+
+  parallaxSettings.current = parallaxSettings.max * percentScrolled; // eslint-disable-line
+  element.style.transform = `translateY(-${parallaxSettings.current}px)`; // eslint-disable-line
+}
+
 class IndexPage extends Component<Props, State> {
   state = {
     menuCollapsed: true,
   };
 
+  parallax = {
+    ticking: false,
+    expBlock: {
+      min: 0,
+      current: 0,
+      max: 200,
+    },
+  };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
   collapseMenu = (collapsed: boolean) => {
     this.setState(() => ({
       menuCollapsed: collapsed,
     }));
+  };
+
+  handleScroll = () => {
+    const lastScrollPosition = window.scrollY;
+
+    if (this.expBack) {
+      parallaxBlock(
+        this.expBack,
+        window.getComputedStyle(this.expBack),
+        this.parallax.expBlock,
+        lastScrollPosition
+      );
+    }
+
+    if (!this.parallax.ticking) {
+      window.requestAnimationFrame(() => {
+        this.parallax.ticking = false;
+      });
+
+      this.parallax.ticking = false;
+    }
   };
 
   render() {
@@ -188,12 +264,26 @@ class IndexPage extends Component<Props, State> {
         <AboutMeBlock>
           <AboutMe />
         </AboutMeBlock>
-        <ExperienceBlock>
+        <ExperienceBlock
+          innerRef={mount => {
+            this.expBack = mount;
+          }}
+        >
+          <ExperienceBackground />
           <Experience />
         </ExperienceBlock>
-        <ProjectsBlock>
-          <h1 style={{ textAlign: 'center' }}>It works!</h1>
+        <ProjectsBlock
+          innerRef={mount => {
+            this.projectBack = mount;
+          }}
+        >
+          <ProjectsBackground />
+          <Projects />
         </ProjectsBlock>
+        <ContactMeBlock>
+          <ContactMe />
+          <ContactMeBackground />
+        </ContactMeBlock>
       </React.Fragment>
     );
   }

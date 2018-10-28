@@ -103,8 +103,7 @@ const AboutMe = () => (
         <SkillGroup>
           <GroupTitle>Personal Skills</GroupTitle>
           <GroupSkills>
-            <Skill>Upper-intermediate english</Skill>
-            <Skill>Osu!Mania 3700pp</Skill>
+            <Skill>Upper-Intermediate English</Skill>
           </GroupSkills>
         </SkillGroup>
       </SectionContent>
