@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: './src/index.html',
@@ -11,6 +12,8 @@ const definePlugin = env =>
   new webpack.DefinePlugin({
     PRODUCTION: JSON.stringify(env.production),
   });
+
+const bundleAnalyzerPlugin = new BundleAnalyzerPlugin();
 
 module.exports = env => ({
   entry: './src/index.js',
@@ -75,5 +78,5 @@ module.exports = env => ({
       },
     ],
   },
-  plugins: [htmlPlugin, definePlugin(env)],
+  plugins: [htmlPlugin, definePlugin(env), bundleAnalyzerPlugin],
 });

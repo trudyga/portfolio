@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 const Layout = styled.article`
   padding: 2em 3em;
@@ -68,17 +69,29 @@ const AboutMe = () => (
   <Layout>
     <MyDescriptionSection>
       <SectionContent>
-        <Title>I am Vladislav Sereda. Full stack web developer</Title>
+        <Title>
+          <FormattedMessage
+            id="AboutMe.Title"
+            defaultMessage="I am Vladislav Sereda. Full stack web developer"
+          />
+        </Title>
         <MyDescription>
-          My skills are broad. I can do both <Emphasize>Front end</Emphasize> and{' '}
-          <Emphasize>Back end</Emphasize> development and can turn application templates into
-          working solution.
+          <FormattedMessage
+            id="AboutMe.Description"
+            defaultMessage="My skills are broad. I can do both {frontEnd} and {backEnd} development and can turn application templates into working solution."
+            values={{
+              frontEnd: <Emphasize>Front End</Emphasize>,
+              backEnd: <Emphasize>Back End</Emphasize>,
+            }}
+          />
         </MyDescription>
       </SectionContent>
     </MyDescriptionSection>
     <MySkillsSection>
       <SectionContent>
-        <Title>My Skills</Title>
+        <Title>
+          <FormattedMessage id="AboutMe.Skills.Title" defaultMessage="My Skills" />
+        </Title>
         <SkillGroup>
           <GroupTitle>Front End</GroupTitle>
           <GroupSkills>
@@ -101,7 +114,9 @@ const AboutMe = () => (
           </GroupSkills>
         </SkillGroup>
         <SkillGroup>
-          <GroupTitle>Personal Skills</GroupTitle>
+          <GroupTitle>
+            <FormattedMessage id="AboutMe.Skills.Personal.Title" defaultMessage="Personal Skills" />
+          </GroupTitle>
           <GroupSkills>
             <Skill>Upper-Intermediate English</Skill>
           </GroupSkills>

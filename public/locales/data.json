@@ -1,0 +1,42 @@
+{
+  "en": {
+    "AboutMe.Title": "I am Vladislav Sereda. Full stack web developer",
+    "AboutMe.Description": "My skills are broad. I can do both {frontEnd} and {backEnd} development and can turn application templates into working solution.",
+    "AboutMe.Skills.Title": "My Skills",
+    "AboutMe.Skills.Personal.Title": "Personal Skills",
+    "Menu.ButtonText": "Menu",
+    "Menu.Language.EN": "EN",
+    "Menu.Language.RU": "RU",
+    "Projects.Inzite.Overview": "Advice web-platform. I have implemented new features and improved existing functionality while working as part of development team.",
+    "Projects.ViewButton": "View Project",
+    "Projects.MediumClone.Overview": "Web application for creation and distribution of electronic publications. The main goal of development is to research the posibilities of React and GraphQL technologies for distributed applications development.",
+    "Projects.StatApp.Overview": "Web tool for carrying out the primary statistical analysis over user-defined data sets.",
+    "Projects.Notes.Overview": "Application provides user with tools for private notes orchestration. The main goal of development is to create microservice architecture for handing application users and their notes.",
+    "IndexPage.Welcome.Backdrop": "Hello",
+    "IndexPage.Welcome.Title": "Hello",
+    "IndexPage.Welcome.Description.Name": "My name is Vladislav Sereda.",
+    "IndexPage.Welcome.Description.Role": "I'm Web developer.",
+    "ContactMe.ResumeLink": "Resume",
+    "ContactMe.EmailLink": "Email"
+  },
+  "ru": {
+    "AboutMe.Title": "Я Владислав Середа. Full-stack веб разработчик",
+    "AboutMe.Description": "Мои навыки разнообразны. Я могу заниматься как {frontEnd} так и {backEnd} разработкой и способен из макет превратить в готовое решение.",
+    "AboutMe.Skills.Title": "Мои навыки",
+    "AboutMe.Skills.Personal.Title": "Личные навыки",
+    "Menu.ButtonText": "Меню",
+    "Menu.Language.EN": "EN",
+    "Menu.Language.RU": "РУ",
+    "Projects.Inzite.Overview": "Веб-платформа по предоставлению онлайн-консультацый. Я был членом команды разработки, выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей веб-платформы.",
+    "Projects.ViewButton": "Осмотреть проект",
+    "Projects.MediumClone.Overview": "Приложение для создания и распостранения електронных публикаций. Проект создавался с целью изучения возможностей React и GraphQL для создания распределенных приложений.",
+    "Projects.StatApp.Overview": "Веб-инструмент для проведения первичного статистического анализа над наборами даных.",
+    "Projects.Notes.Overview": "Приложение предоставляет средства для управления личными заметками пользователей. В проекте делался акцент на создание микросервисной архитектуры для операций управления пользователями и заметками.",
+    "IndexPage.Welcome.Backdrop": "Здравствуйте",
+    "IndexPage.Welcome.Title": "Здравствуйте",
+    "IndexPage.Welcome.Description.Name": "Меня зовут Владислав Середа.",
+    "IndexPage.Welcome.Description.Role": "Я - веб-разработчик",
+    "ContactMe.ResumeLink": "Резюме",
+    "ContactMe.EmailLink": "Почта"
+  }
+}

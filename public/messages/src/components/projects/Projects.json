@@ -1,0 +1,22 @@
+[
+  {
+    "id": "Projects.Inzite.Overview",
+    "defaultMessage": "Advice web-platform. I have implemented new features and improved existing functionality while working as part of development team."
+  },
+  {
+    "id": "Projects.ViewButton",
+    "defaultMessage": "View Project"
+  },
+  {
+    "id": "Projects.MediumClone.Overview",
+    "defaultMessage": "Web application for creation and distribution of electronic publications. The main goal of development is to research the posibilities of React and GraphQL technologies for distributed applications development"
+  },
+  {
+    "id": "Projects.StatApp.Overview",
+    "defaultMessage": "Web tool for carrying out the primary statistical analysis over user-defined data sets."
+  },
+  {
+    "id": "Projects.Notes.Overview",
+    "defaultMessage": "Application provides user with tools for private notes orchestration. The main goal of development is to create microservice architecture for handing application users and their notes."
+  }
+]

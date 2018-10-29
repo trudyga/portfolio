@@ -201,8 +201,7 @@ class VerticalTimeline extends React.Component<Props, State> {
         headline: 'National Aviation University',
         position: 'Student',
         timespan: 'September 2015 - Present',
-        description: `Working alongside the designer team implementing the designs, also developing custom
-  solutions to add`,
+        description: `Студент четвертого курса специальности "Инженерия програмного обеспечения" Национального Авиационного Университета`,
         tags: [
           {
             id: 1,
@@ -216,8 +215,9 @@ class VerticalTimeline extends React.Component<Props, State> {
         headline: 'Inzite LTD',
         position: 'Full Stack Web Developer',
         timespan: 'October 2017 - August 2018',
-        description: `Working alongside the designer team implementing the designs, also developing custom
-  solutions to address team necessities.`,
+        description: `Я был членом команды разработки,
+        выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей
+        веб-платформы.`,
         tags: [
           {
             id: 1,
@@ -243,8 +243,7 @@ class VerticalTimeline extends React.Component<Props, State> {
         headline: 'Self Improvement',
         position: 'None',
         timespan: 'September 2018 - Present',
-        description: `Working alongside the designer team implementing the designs, also developing custom
-  solutions to address team necessities.`,
+        description: `Изучение веб-технологий и реализация веб-приложений на их основе.`,
         tags: [
           {
             id: 1,

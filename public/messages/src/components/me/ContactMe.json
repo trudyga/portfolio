@@ -1,0 +1,10 @@
+[
+  {
+    "id": "ContactMe.ResumeLink",
+    "defaultMessage": "Resume"
+  },
+  {
+    "id": "ContactMe.EmailLink",
+    "defaultMessage": "Email"
+  }
+]

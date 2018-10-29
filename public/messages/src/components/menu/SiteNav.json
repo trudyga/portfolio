@@ -1,0 +1,14 @@
+[
+  {
+    "id": "Menu.ButtonText",
+    "defaultMessage": "Menu"
+  },
+  {
+    "id": "Menu.Language.EN",
+    "defaultMessage": "EN"
+  },
+  {
+    "id": "Menu.Language.RU",
+    "defaultMessage": "RU"
+  }
+]

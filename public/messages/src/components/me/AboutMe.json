@@ -1,0 +1,18 @@
+[
+  {
+    "id": "AboutMe.Title",
+    "defaultMessage": "I am Vladislav Sereda. Full stack web developer"
+  },
+  {
+    "id": "AboutMe.Description",
+    "defaultMessage": "My skills are broad. I can do both {frontEnd} and {backEnd} development and can turn application templates into working solution."
+  },
+  {
+    "id": "AboutMe.Skills.Title",
+    "defaultMessage": "My Skills"
+  },
+  {
+    "id": "AboutMe.Skills.Personal.Title",
+    "defaultMessage": "Personal Skills"
+  }
+]

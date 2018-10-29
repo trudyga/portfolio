@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import Scene from '../components/background/Scene';
 import SiteNav from '../components/menu/SiteNav';
 import AboutMe from '../components/me/AboutMe';
@@ -247,15 +248,25 @@ class IndexPage extends Component<Props, State> {
               <IntroductoryMessage>
                 <HeadlineMessage>
                   <FirstWord>
-                    <BackdropText>Hello</BackdropText>
-                    <PrimaryText>Hello</PrimaryText>
+                    <BackdropText>
+                      <FormattedMessage id="IndexPage.Welcome.Backdrop" defaultMessage="Hello" />
+                    </BackdropText>
+                    <PrimaryText>
+                      <FormattedMessage id="IndexPage.Welcome.Title" defaultMessage="Hello" />
+                    </PrimaryText>
                   </FirstWord>
                 </HeadlineMessage>
-                <DescriptionText>My name is Vladislav Sereda.</DescriptionText>
                 <DescriptionText>
-                  {`
-                  I'm Web developer.
-                `}
+                  <FormattedMessage
+                    id="IndexPage.Welcome.Description.Name"
+                    defaultMessage="My name is Vladislav Sereda."
+                  />
+                </DescriptionText>
+                <DescriptionText>
+                  <FormattedMessage
+                    id="IndexPage.Welcome.Description.Role"
+                    defaultMessage="I'm Web developer."
+                  />
                 </DescriptionText>
               </IntroductoryMessage>
             </CenteredWrapper>

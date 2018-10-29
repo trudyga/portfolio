@@ -1,0 +1,18 @@
+[
+  {
+    "id": "IndexPage.Welcome.Backdrop",
+    "defaultMessage": "Hello"
+  },
+  {
+    "id": "IndexPage.Welcome.Title",
+    "defaultMessage": "Hello"
+  },
+  {
+    "id": "IndexPage.Welcome.Description.Name",
+    "defaultMessage": "My name is Vladislav Sereda."
+  },
+  {
+    "id": "IndexPage.Welcome.Description.Role",
+    "defaultMessage": "I'm Web developer."
+  }
+]

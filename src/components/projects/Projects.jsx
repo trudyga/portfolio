@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
+import { FormattedMessage } from 'react-intl';
 
 // const { Meta } = Card;
 
@@ -124,12 +125,16 @@ const Projects = () => (
         <Description>
           <ProjectTitle>Inzite</ProjectTitle>
           <ProjectOverview>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos dolor quas aliquid
-            aliquam nihil distinctio ea ex tenetur at dolores.
+            <FormattedMessage
+              id="Projects.Inzite.Overview"
+              defaultMessage="Advice web-platform. I have implemented new features and improved existing functionality while working as part of development team."
+            />
           </ProjectOverview>
           <ProjectControls>
             <Link href="https://inzite.io/" rel="noopener noreferrer" target="_blank">
-              <LinkText>View Project</LinkText>
+              <LinkText>
+                <FormattedMessage id="Projects.ViewButton" defaultMessage="View Project" />
+              </LinkText>
               <ChromeIcon />
             </Link>
           </ProjectControls>
@@ -142,12 +147,42 @@ const Projects = () => (
         <Description>
           <ProjectTitle>Medium Clone</ProjectTitle>
           <ProjectOverview>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos dolor quas aliquid
-            aliquam nihil distinctio ea ex tenetur at dolores.
+            <FormattedMessage
+              id="Projects.MediumClone.Overview"
+              defaultMessage="Web application for creation and distribution of electronic publications. The main goal of development is to research the posibilities of React and GraphQL technologies for distributed applications development"
+            />
           </ProjectOverview>
           <ProjectControls>
             <Link href="https://inzite.io/" rel="noopener noreferrer" target="_blank">
-              <LinkText>View Project</LinkText>
+              <LinkText>
+                <FormattedMessage id="Projects.ViewButton" defaultMessage="View Project" />
+              </LinkText>
+              <GithubIcon />
+            </Link>
+          </ProjectControls>
+        </Description>
+      </Project>
+      <Project>
+        <ProjectImage>
+          <Image alt="anime" src="/public/images/anime3.png" />
+        </ProjectImage>
+        <Description>
+          <ProjectTitle>Stat App</ProjectTitle>
+          <ProjectOverview>
+            <FormattedMessage
+              id="Projects.StatApp.Overview"
+              defaultMessage="Web tool for carrying out the primary statistical analysis over user-defined data sets."
+            />
+          </ProjectOverview>
+          <ProjectControls>
+            <Link
+              href="https://github.com/trudyga/StatApp"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <LinkText>
+                <FormattedMessage id="Projects.ViewButton" defaultMessage="View Project" />
+              </LinkText>
               <GithubIcon />
             </Link>
           </ProjectControls>
@@ -161,8 +196,10 @@ const Projects = () => (
         <Description>
           <ProjectTitle>Notes</ProjectTitle>
           <ProjectOverview>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos dolor quas aliquid
-            aliquam nihil distinctio ea ex tenetur at dolores.
+            <FormattedMessage
+              id="Projects.Notes.Overview"
+              defaultMessage="Application provides user with tools for private notes orchestration. The main goal of development is to create microservice architecture for handing application users and their notes."
+            />
           </ProjectOverview>
           <ProjectControls>
             <Link
@@ -170,29 +207,10 @@ const Projects = () => (
               rel="noopener noreferrer"
               target="_blank"
             >
-              <LinkText>View Project</LinkText>
-              <GithubIcon />
-            </Link>
-          </ProjectControls>
-        </Description>
-      </Project>
-      <Project>
-        <ProjectImage>
-          <Image alt="anime" src="/public/images/anime3.png" />
-        </ProjectImage>
-        <Description>
-          <ProjectTitle>Stat App</ProjectTitle>
-          <ProjectOverview>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos dolor quas aliquid
-            aliquam nihil distinctio ea ex tenetur at dolores.
-          </ProjectOverview>
-          <ProjectControls>
-            <Link
-              href="https://github.com/trudyga/StatApp"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <LinkText>View Project</LinkText>
+              <LinkText>
+                {' '}
+                <FormattedMessage id="Projects.ViewButton" defaultMessage="View Project" />
+              </LinkText>
               <GithubIcon />
             </Link>
           </ProjectControls>

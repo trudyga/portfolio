@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 const Container = styled.div`
   display: flex;
@@ -60,13 +61,17 @@ const ContactMe = () => (
     <Creator>© 2018 Sereda Vladislav</Creator>
     <Links>
       <Link href="#resume" rel="noopener noreferrer" target="_blank">
-        <LinkText>Resume</LinkText>
+        <LinkText>
+          <FormattedMessage id="ContactMe.ResumeLink" defaultMessage="Resume" />
+        </LinkText>
       </Link>
       <Link href="https://www.linkedin.com/in/trudyga/" rel="noopener noreferrer" target="_blank">
         <LinkText>LinkedIn</LinkText>
       </Link>
       <Link href="mailto:trudygajs@gmail.com">
-        <LinkText>Email</LinkText>
+        <LinkText>
+          <FormattedMessage id="ContactMe.EmailLink" defaultMessage="Email" />
+        </LinkText>
       </Link>
     </Links>
   </Container>

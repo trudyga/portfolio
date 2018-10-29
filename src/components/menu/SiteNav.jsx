@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 import styled, { css } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 const MenuContainer = styled.div`
   position: relative;
@@ -98,7 +99,9 @@ class SiteNav extends Component<Props, State> {
         >
           <MenuItem selected>
             <Icon style={{ fontSize: '25px' }} type="menu-fold" theme="outlined" />
-            <MenuItemText>Menu</MenuItemText>
+            <MenuItemText>
+              <FormattedMessage id="Menu.ButtonText" defaultMessage="Menu" />
+            </MenuItemText>
           </MenuItem>
         </StyledMenu>
         <TopStyledMenu>
@@ -115,10 +118,14 @@ class SiteNav extends Component<Props, State> {
         </TopStyledMenu>
         <BottomStyledMenu>
           <MenuItem selected>
-            <MenuItemText>EN</MenuItemText>
+            <MenuItemText>
+              <FormattedMessage id="Menu.Language.EN" defaultMessage="EN" />
+            </MenuItemText>
           </MenuItem>
           <MenuItem>
-            <MenuItemText>RU</MenuItemText>
+            <MenuItemText>
+              <FormattedMessage id="Menu.Language.RU" defaultMessage="RU" />
+            </MenuItemText>
           </MenuItem>
         </BottomStyledMenu>
       </MenuContainer>
