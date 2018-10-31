@@ -20,6 +20,7 @@ module.exports = env => ({
   output: {
     path: path.resolve('dist'),
     filename: 'main.js',
+    publicPath: '/', // why, why ????
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx'],

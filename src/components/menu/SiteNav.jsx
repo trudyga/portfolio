@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 import { Icon } from 'antd';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
@@ -67,6 +68,7 @@ type Props = {
 
 type State = {
   current: string,
+  redirectToLocale: string,
 };
 
 class SiteNav extends Component<Props, State> {
@@ -77,6 +79,7 @@ class SiteNav extends Component<Props, State> {
 
   state = {
     current: '',
+    redirectToLocale: '',
   };
 
   handleClick = e => {
@@ -85,9 +88,21 @@ class SiteNav extends Component<Props, State> {
     });
   };
 
+  redirectToEn = () => {
+    this.setState({
+      redirectToLocale: 'en',
+    });
+  };
+
+  redirectToRu = () => {
+    this.setState({
+      redirectToLocale: 'ru',
+    });
+  };
+
   render() {
     const { transparentBackground, collapsed } = this.props;
-    const { current } = this.state;
+    const { current, redirectToLocale } = this.state;
 
     return (
       <MenuContainer>
@@ -117,20 +132,21 @@ class SiteNav extends Component<Props, State> {
           </a>
         </TopStyledMenu>
         <BottomStyledMenu>
-          <MenuItem selected>
+          <MenuItem selected onClick={this.redirectToEn}>
             <MenuItemText>
               <FormattedMessage id="Menu.Language.EN" defaultMessage="EN" />
             </MenuItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={this.redirectToRu}>
             <MenuItemText>
               <FormattedMessage id="Menu.Language.RU" defaultMessage="RU" />
             </MenuItemText>
           </MenuItem>
+          {redirectToLocale && <Redirect to={`/${redirectToLocale}`} />}
         </BottomStyledMenu>
       </MenuContainer>
     );
   }
 }
 
-export default SiteNav;
+export default withRouter(SiteNav);
