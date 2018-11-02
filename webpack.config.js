@@ -74,6 +74,15 @@ module.exports = env => ({
         ],
       },
       {
+        test: /\.svg$/i,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'react-svg-loader',
+          },
+        ],
+      },
+      {
         test: /\.glsl$/,
         use: 'raw-loader',
       },

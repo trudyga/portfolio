@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
+import Link from '../atoms/Link';
 
 const Container = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const Creator = styled.span`
   display: inline-block;
   color: white;
   font-size: 1em;
+  padding-left: 10px;
   flex: 1;
 `;
 
@@ -29,22 +31,9 @@ const Links = styled.div`
   flex-wrap: nowrap;
 `;
 
-const Link = styled.a`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-
-  cursor: pointer;
-  text-decoration: none;
-  color: #03ffd1;
+const StyledLink = styled(Link)`
   padding: 10px;
   margin: 10px;
-
-  transition: color 0.3s ease-out;
-
-  :hover {
-    color: #e83b6c;
-  }
 `;
 
 const LinkText = styled.span`
@@ -60,19 +49,23 @@ const ContactMe = () => (
   <Container>
     <Creator>© 2018 Sereda Vladislav</Creator>
     <Links>
-      <Link href="#resume" rel="noopener noreferrer" target="_blank">
+      <StyledLink href="#resume" rel="noopener noreferrer" target="_blank">
         <LinkText>
           <FormattedMessage id="ContactMe.ResumeLink" defaultMessage="Resume" />
         </LinkText>
-      </Link>
-      <Link href="https://www.linkedin.com/in/trudyga/" rel="noopener noreferrer" target="_blank">
+      </StyledLink>
+      <StyledLink
+        href="https://www.linkedin.com/in/trudyga/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <LinkText>LinkedIn</LinkText>
-      </Link>
-      <Link href="mailto:trudygajs@gmail.com">
+      </StyledLink>
+      <StyledLink href="mailto:trudygajs@gmail.com">
         <LinkText>
           <FormattedMessage id="ContactMe.EmailLink" defaultMessage="Email" />
         </LinkText>
-      </Link>
+      </StyledLink>
     </Links>
   </Container>
 );

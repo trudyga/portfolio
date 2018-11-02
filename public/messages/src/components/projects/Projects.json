@@ -1,5 +1,9 @@
 [
   {
+    "id": "Projects.SectionTitle",
+    "defaultMessage": "My Projects"
+  },
+  {
     "id": "Projects.Inzite.Overview",
     "defaultMessage": "Advice web-platform. I have implemented new features and improved existing functionality while working as part of development team."
   },

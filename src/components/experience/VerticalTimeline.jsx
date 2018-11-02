@@ -4,6 +4,8 @@ import posed, { PoseGroup } from 'react-pose';
 import { Icon } from 'antd';
 import { Watch } from 'scrollmonitor-react';
 
+import { FormattedMessage } from 'react-intl';
+import Title from '../atoms/BlockTitle';
 import TimelineContent from './TimelineContent';
 
 const Container = styled.div`
@@ -138,6 +140,12 @@ const TimelineCircle = styled.div`
   }
 `;
 
+const StyledTitle = styled(Title)`
+  position: absolute;
+  top: -30%;
+  width: 100%;
+`;
+
 const AnimatedTimelineLine = posed(TimelineLine)({
   viewable: {
     top: '-20%',
@@ -268,6 +276,9 @@ class VerticalTimeline extends React.Component<Props, State> {
 
     return (
       <Container>
+        <StyledTitle>
+          <FormattedMessage id="Experience.SectionTitle" defaultMessage="Experience" />
+        </StyledTitle>
         <Timeline
           innerRef={el => {
             this.timeline = el;

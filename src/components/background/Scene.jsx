@@ -3,7 +3,8 @@ import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import WebGL from './utils/WebGL';
 // import HyperSphere from './objects/HyperSphere';
-import Galaxy from './Galaxy';
+// import Galaxy from './Galaxy';
+import HyperSphere from './objects/HyperSphereV2';
 
 type Props = {
   fullScreen?: boolean,
@@ -41,17 +42,20 @@ class ThreeScene extends Component<Props> {
     }
 
     // ADD HyperSphere
-    this.galaxy = new Galaxy(
-      70 / 3,
-      3000 / 3,
-      [new THREE.Color(0xe83b6c), new THREE.Color(0xff749b), new THREE.Color(0x6e5f6a)],
-      5 / 3,
-      3 / 2,
-      7.5 / 1.5
-    );
-
+    this.galaxy = new HyperSphere();
     this.scene.add(this.galaxy.points);
     this.scene.add(this.galaxy.lines);
+    // this.galaxy = new Galaxy(
+    //   70 / 3,
+    //   3000 / 3,
+    //   [new THREE.Color(0xe83b6c), new THREE.Color(0xff749b), new THREE.Color(0x6e5f6a)],
+    //   5 / 3,
+    //   3 / 2,
+    //   7.5 / 1.5
+    // );
+
+    // this.scene.add(this.galaxy.points);
+    // this.scene.add(this.galaxy.lines);
     // this.hyperSphere = new HyperSphere({ pointsAmount: 256 });
     // console.log(this.hyperSphere);
     // this.scene.add(this.hyperSphere.get3DObject());

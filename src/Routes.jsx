@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import ru from 'react-intl/locale-data/ru';
@@ -31,21 +31,29 @@ const ApplicationRoutes = ({ match: { url } }: ApplicationRoutesProps) => (
   </Switch>
 );
 
-type LanguageProviderProps = {
-  locale: string,
+type IntlRouterProps = {
+  location: Object,
 };
-const LanguageProvider = ({ locale }: LanguageProviderProps) => (
-  <IntlProvider locale={locale} messages={localeData[locale]}>
-    <ApplicationRoutes match={{ url: `/${locale}` }} />
-  </IntlProvider>
-);
+const IntlRouter = ({ location }: IntlRouterProps) => {
+  function getCurrentLocale() {
+    const parts = location.pathname.split('/');
+    const locale = parts.length > 0 && parts[1];
+    console.log('location', location, 'locale', locale);
 
-const LanguageRoutes = () => (
-  <Switch>
-    <Route exact path="/" component={() => <LanguageProvider locale="en" />} />
-    <Route path="/en" component={() => <LanguageProvider locale="en" />} />
-    <Route path="/ru" component={() => <LanguageProvider locale="ru" />} />
-  </Switch>
-);
+    if (locale === 'ru') {
+      return 'ru';
+    }
 
-export default LanguageRoutes;
+    return 'en';
+  }
+
+  const locale = getCurrentLocale();
+
+  return (
+    <IntlProvider locale={locale} messages={localeData[locale]}>
+      <ApplicationRoutes match={{ url: `/${locale}` }} />
+    </IntlProvider>
+  );
+};
+
+export default withRouter(IntlRouter);

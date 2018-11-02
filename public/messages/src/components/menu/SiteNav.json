@@ -1,6 +1,10 @@
 [
   {
-    "id": "Menu.ButtonText",
+    "id": "Menu.Hide.ButtonText",
+    "defaultMessage": "Close"
+  },
+  {
+    "id": "Menu.Open.ButtonText",
     "defaultMessage": "Menu"
   },
   {
@@ -10,5 +14,17 @@
   {
     "id": "Menu.Language.RU",
     "defaultMessage": "RU"
+  },
+  {
+    "id": "Menu.Items.AboutMe",
+    "defaultMessage": "About Me"
+  },
+  {
+    "id": "Menu.Items.Experience",
+    "defaultMessage": "Experience"
+  },
+  {
+    "id": "Menu.Items.Projects",
+    "defaultMessage": "Projects"
   }
 ]

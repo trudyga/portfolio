@@ -83,6 +83,10 @@ const DescriptionText = styled.p`
 const AboutMeBlock = styled.div`
   position: relative;
   padding: 300px 0;
+  @media only screen and (min-width: 900px) {
+    padding: 50vh 0;
+  }
+
   background-image: url('/public/images/trianglify.svg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -272,7 +276,7 @@ class IndexPage extends Component<Props, State> {
             </CenteredWrapper>
           </StyledContent>
         </FullScreenLayout>
-        <AboutMeBlock>
+        <AboutMeBlock id="aboutMe">
           <AboutMe />
         </AboutMeBlock>
         <ExperienceBlock
@@ -280,10 +284,11 @@ class IndexPage extends Component<Props, State> {
             this.expBack = mount;
           }}
         >
-          <ExperienceBackground />
+          <ExperienceBackground id="experience" />
           <Experience />
         </ExperienceBlock>
         <ProjectsBlock
+          id="projects"
           innerRef={mount => {
             this.projectBack = mount;
           }}
