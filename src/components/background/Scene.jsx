@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import * as THREE from 'three';
+import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
 import * as Stats from 'stats.js';
 import WebGL from './utils/WebGL';
 // import HyperSphere from './objects/HyperSphere';
@@ -21,15 +21,15 @@ class ThreeScene extends Component<Props> {
     const height = fullScreen ? window.innerHeight : this.mount.clientHeight;
 
     // ADD SCENE
-    this.scene = new THREE.Scene();
+    this.scene = new Scene();
 
     // ADD CAMERA
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    this.camera = new PerspectiveCamera(75, width / height, 0.1, 1000);
     this.camera.position.z = 50;
     this.camera.position.x = -10;
 
     // ADD RENDERER
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    this.renderer = new WebGLRenderer({ antialias: true });
     this.renderer.setClearColor('#000000');
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
@@ -48,7 +48,7 @@ class ThreeScene extends Component<Props> {
     // this.galaxy = new Galaxy(
     //   70 / 3,
     //   3000 / 3,
-    //   [new THREE.Color(0xe83b6c), new THREE.Color(0xff749b), new THREE.Color(0x6e5f6a)],
+    //   [new Color(0xe83b6c), new Color(0xff749b), new Color(0x6e5f6a)],
     //   5 / 3,
     //   3 / 2,
     //   7.5 / 1.5
@@ -61,7 +61,7 @@ class ThreeScene extends Component<Props> {
     // this.scene.add(this.hyperSphere.get3DObject());
 
     // SET Clock
-    this.clock = new THREE.Clock();
+    this.clock = new Clock();
 
     this.start();
   }

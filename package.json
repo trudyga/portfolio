@@ -4,9 +4,14 @@
   "description": "My portfolio web-page",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.development --mode development --open --hot",
+    "start": "npm run prod",
+    "dev": "npm run start",
+    "prod": "npm run build && npm run serve",
+
     "build:langs": "NODE_ENV='production' babel-node ./scripts/mergeMessages.js",
-    "build": "npm run build:langs && webpack --env.production --mode production",
+    "build": "npm run build:langs && webpack --config ./config/webpack.prod.js && cp -r public/ dist/",
+    "serve": "serve -l 80 -s -c ./config/serve.json",
+
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src"
   },
@@ -54,7 +59,8 @@
     "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
     "antd": "^3.10.0",
@@ -63,14 +69,16 @@
     "jsnumpy": "^1.1.10",
     "mkdirp": "^0.5.1",
     "query-string": "^6.2.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-intl": "^2.7.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-intl": "npm:@dragonraider5/react-intl",
     "react-pose": "^3.3.6",
     "react-router-dom": "^4.3.1",
     "scrollmonitor-react": "^2.4.1",
+    "serve": "^10.0.2",
     "stats.js": "^0.17.0",
     "styled-components": "^3.4.9",
-    "three": "^0.97.0"
+    "three": "^0.97.0",
+    "throttle-debounce": "^2.0.1"
   }
 }

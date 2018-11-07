@@ -5,7 +5,6 @@ import {
   MeshBasicMaterial,
   Mesh,
   Object3D,
-  Line,
   LineSegments,
   ShaderMaterial,
   Color,

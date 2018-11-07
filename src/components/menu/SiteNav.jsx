@@ -118,8 +118,9 @@ const ExpandedMenuItems = styled.div`
 type Props = {
   transparentBackground?: boolean,
   collapsed?: boolean,
-  onExpand?: () => void,
-  onShrink?: () => void,
+  location: Object,
+  onExpand?: void => void,
+  onShrink?: void => void,
 };
 
 type State = {
@@ -140,6 +141,13 @@ class SiteNav extends Component<Props, State> {
     current: '',
     redirectToLocale: '',
     isExpanded: false,
+  };
+
+  getCurrentLocale = () => {
+    const { location } = this.props;
+    const isRussian = /^\/ru/i.test(location.pathname);
+
+    return isRussian ? 'ru' : 'en';
   };
 
   handleClick = e => {
@@ -188,6 +196,7 @@ class SiteNav extends Component<Props, State> {
   render() {
     const { transparentBackground, collapsed } = this.props;
     const { current, redirectToLocale, isExpanded } = this.state;
+    const currentLocale = this.getCurrentLocale();
 
     return (
       <MenuContainer>
@@ -198,7 +207,6 @@ class SiteNav extends Component<Props, State> {
           transparentBackground={transparentBackground}
         >
           <MenuItem selected onClick={this.toggleMenu}>
-            {/* <Icon style={{ fontSize: '25px' }} type="menu-fold" theme="outlined" /> */}
             <MenuItemIcon selected>{isExpanded ? <CancelIcon /> : <MenuIcon />}</MenuItemIcon>
             <MenuItemText>
               {isExpanded ? (
@@ -222,17 +230,18 @@ class SiteNav extends Component<Props, State> {
           </a>
         </TopStyledMenu>
         <BottomStyledMenu>
-          <MenuItem selected onClick={this.redirectToEn}>
+          <MenuItem selected={currentLocale === 'en'} onClick={this.redirectToEn}>
             <MenuItemText>
               <FormattedMessage id="Menu.Language.EN" defaultMessage="EN" />
             </MenuItemText>
           </MenuItem>
-          <MenuItem onClick={this.redirectToRu}>
+          <MenuItem selected={currentLocale === 'ru'} onClick={this.redirectToRu}>
             <MenuItemText>
               <FormattedMessage id="Menu.Language.RU" defaultMessage="RU" />
             </MenuItemText>
           </MenuItem>
-          {redirectToLocale && <Redirect to={`/${redirectToLocale}`} />}
+          {redirectToLocale &&
+            redirectToLocale !== currentLocale && <Redirect to={`/${redirectToLocale}`} />}
         </BottomStyledMenu>
         <ExpandedMenu expanded={isExpanded}>
           <ExpandedMenuControls>

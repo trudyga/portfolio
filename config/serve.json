@@ -1,0 +1,11 @@
+{
+  "public": "/dist",
+  "rewrites": [
+    { "source": "public/**", "destination": "./public/**" }
+  ],
+  "renderSingle": true,
+  "unlisted": [
+    ".vscode",
+    ".git"
+  ]
+}

@@ -195,4 +195,4 @@ const Projects = () => (
   </Container>
 );
 
-export default Projects;
+export default React.memo(Projects);

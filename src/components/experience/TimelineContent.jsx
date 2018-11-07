@@ -52,6 +52,10 @@ const Description = styled.div`
   color: #ddd;
   text-align: justify;
   margin: 0.5em 0;
+
+  @media only screen and (max-width: 600px) {
+    text-align: left;
+  }
 `;
 
 const Tags = styled.div`
@@ -71,7 +75,7 @@ type Props = {
   headline: string,
   position: string,
   timespan: string,
-  description: string,
+  description: React.Node,
   tags: Array<TagType>,
   icon: React.Node,
 };

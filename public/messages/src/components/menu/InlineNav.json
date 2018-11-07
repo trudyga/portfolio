@@ -1,0 +1,14 @@
+[
+  {
+    "id": "TopMenu.Items.AboutMe",
+    "defaultMessage": "About Me"
+  },
+  {
+    "id": "TopMenu.Items.Experience",
+    "defaultMessage": "Experience"
+  },
+  {
+    "id": "TopMenu.Items.Projects",
+    "defaultMessage": "Projects"
+  }
+]

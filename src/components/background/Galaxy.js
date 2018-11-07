@@ -1,11 +1,24 @@
 // @flow
-import * as THREE from 'three';
+import {
+  Group,
+  Points,
+  Color,
+  Geometry,
+  Vector3,
+  TextureLoader,
+  BufferGeometry,
+  BufferAttribute,
+  ShaderMaterial,
+  LineBasicMaterial,
+  LineSegments,
+  VertexColors,
+} from 'three';
 
 import dotTexture from '../../../public/images/dotTexture.png';
 import vertexShader from './vertexShader.glsl'; // eslint-disable-line
 import fragmentShader from './fragmentShader.glsl'; // eslint-disable-line
 
-const loader = new THREE.TextureLoader();
+const loader = new TextureLoader();
 loader.crossOrigin = '';
 
 function randomSpherePoint() {
@@ -21,27 +34,27 @@ function randomSpherePoint() {
 }
 
 class Galaxy {
-  lines: THREE.Group;
+  lines: Group;
 
-  points: THREE.Points;
+  points: Points;
 
   constructor(
     radius: number,
     pointsAmount: number,
-    colors: Array<THREE.Color>,
+    colors: Array<Color>,
     sizeRandomness: number,
     pointSize: number,
     connectLength: number
   ) {
-    // const galaxy = new THREE.Group();
-    const dotsGeometry = new THREE.Geometry();
+    // const galaxy = new Group();
+    const dotsGeometry = new Geometry();
 
     const colorsAttributes = new Float32Array(pointsAmount * 3); // list of 3-numbers vectors to represent color of vertix
     const positions = new Float32Array(pointsAmount * 3); // list of 3-numbers vectors to represent positions of vertixes
     const pointSizes = new Float32Array(pointsAmount); // list of numbers with represent sizes of vertixes
 
     for (let i = 0; i < pointsAmount; i += 1) {
-      const vertex = new THREE.Vector3();
+      const vertex = new Vector3();
       const pointPositions = randomSpherePoint();
       const [x, y, z] = pointPositions;
       vertex.x = x;
@@ -58,15 +71,15 @@ class Galaxy {
     }
 
     // init geometry which will store points strucuture and add custom attributes to it
-    const bufferWrapGeometry = new THREE.BufferGeometry();
-    const bufferPositions = new THREE.BufferAttribute(positions, 3);
+    const bufferWrapGeometry = new BufferGeometry();
+    const bufferPositions = new BufferAttribute(positions, 3);
     bufferWrapGeometry.addAttribute('position', bufferPositions);
-    const bufferSizes = new THREE.BufferAttribute(pointSizes, 1);
+    const bufferSizes = new BufferAttribute(pointSizes, 1);
     bufferWrapGeometry.addAttribute('size', bufferSizes);
-    const bufferColors = new THREE.BufferAttribute(colorsAttributes, 3);
+    const bufferColors = new BufferAttribute(colorsAttributes, 3);
     bufferWrapGeometry.addAttribute('color', bufferColors);
 
-    const galaxyShaderMaterial = new THREE.ShaderMaterial({
+    const galaxyShaderMaterial = new ShaderMaterial({
       uniforms: {
         texture: {
           value: loader.load(dotTexture),
@@ -77,15 +90,15 @@ class Galaxy {
       transparent: false,
     });
 
-    const wrap = new THREE.Points(bufferWrapGeometry, galaxyShaderMaterial);
+    const wrap = new Points(bufferWrapGeometry, galaxyShaderMaterial);
     this.points = wrap;
 
-    const segmentsGeom = new THREE.Geometry();
-    const segmentsMat = new THREE.LineBasicMaterial({
+    const segmentsGeom = new Geometry();
+    const segmentsMat = new LineBasicMaterial({
       color: 0xffffff,
       transparent: true,
       opacity: 0.3,
-      vertexColors: THREE.VertexColors,
+      vertexColors: VertexColors,
     });
     for (let i = dotsGeometry.vertices.length - 1; i >= 0; i -= 1) {
       const lineStart = dotsGeometry.vertices[i];
@@ -99,8 +112,8 @@ class Galaxy {
         }
       }
     }
-    const segments = new THREE.LineSegments(segmentsGeom, segmentsMat);
-    this.lines = new THREE.Group();
+    const segments = new LineSegments(segmentsGeom, segmentsMat);
+    this.lines = new Group();
     this.lines.add(segments);
   }
 }

@@ -1,5 +1,53 @@
 [
   {
+    "id": "Experience.Undergraduate.Headline",
+    "defaultMessage": "National Aviation University"
+  },
+  {
+    "id": "Experience.Undergraduate.Position",
+    "defaultMessage": "Student"
+  },
+  {
+    "id": "Experience.Undergraduate.Timespan",
+    "defaultMessage": "September 2015 - Present"
+  },
+  {
+    "id": "Experience.Undergraduate.Description",
+    "defaultMessage": "The fourth year student of the speciality \"Software engineering\" of the National Aviation University"
+  },
+  {
+    "id": "Experience.Inzite.Headline",
+    "defaultMessage": "Inzite LTD"
+  },
+  {
+    "id": "Experience.Inzite.Position",
+    "defaultMessage": "Full Stack Web Developer"
+  },
+  {
+    "id": "Experience.Inzite.Timespan",
+    "defaultMessage": "October 2017 - August 2018"
+  },
+  {
+    "id": "Experience.Inzite.Description",
+    "defaultMessage": "I was a member of development team. I was working on service improvement and implementation of new web-platform features."
+  },
+  {
+    "id": "Experience.SelfImprovement.Headline",
+    "defaultMessage": "Self Improvement"
+  },
+  {
+    "id": "Experience.SelfImprovement.Position",
+    "defaultMessage": "None"
+  },
+  {
+    "id": "Experience.SelfImprovement.Timespan",
+    "defaultMessage": "September 2018 - Present"
+  },
+  {
+    "id": "Experience.SelfImprovement.Description",
+    "defaultMessage": "I am discovering new web technologies and implementing web applications based by them."
+  },
+  {
     "id": "Experience.SectionTitle",
     "defaultMessage": "Experience"
   }

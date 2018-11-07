@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import posed, { PoseGroup } from 'react-pose';
+
 import { Icon } from 'antd';
 import { Watch } from 'scrollmonitor-react';
 
@@ -206,10 +207,27 @@ class VerticalTimeline extends React.Component<Props, State> {
     items: [
       {
         id: 1,
-        headline: 'National Aviation University',
-        position: 'Student',
-        timespan: 'September 2015 - Present',
-        description: `Студент четвертого курса специальности "Инженерия програмного обеспечения" Национального Авиационного Университета`,
+        headline: (
+          <FormattedMessage
+            id="Experience.Undergraduate.Headline"
+            defaultMessage="National Aviation University"
+          />
+        ),
+        position: (
+          <FormattedMessage id="Experience.Undergraduate.Position" defaultMessage="Student" />
+        ),
+        timespan: (
+          <FormattedMessage
+            id="Experience.Undergraduate.Timespan"
+            defaultMessage="September 2015 - Present"
+          />
+        ),
+        description: (
+          <FormattedMessage
+            id="Experience.Undergraduate.Description"
+            defaultMessage={`The fourth year student of the speciality "Software engineering" of the National Aviation University`}
+          />
+        ),
         tags: [
           {
             id: 1,
@@ -220,12 +238,25 @@ class VerticalTimeline extends React.Component<Props, State> {
       },
       {
         id: 2,
-        headline: 'Inzite LTD',
-        position: 'Full Stack Web Developer',
-        timespan: 'October 2017 - August 2018',
-        description: `Я был членом команды разработки,
-        выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей
-        веб-платформы.`,
+        headline: <FormattedMessage id="Experience.Inzite.Headline" defaultMessage="Inzite LTD" />,
+        position: (
+          <FormattedMessage
+            id="Experience.Inzite.Position"
+            defaultMessage="Full Stack Web Developer"
+          />
+        ),
+        timespan: (
+          <FormattedMessage
+            id="Experience.Inzite.Timespan"
+            defaultMessage="October 2017 - August 2018"
+          />
+        ),
+        description: (
+          <FormattedMessage
+            id="Experience.Inzite.Description"
+            defaultMessage="I was a member of development team. I was working on service improvement and implementation of new web-platform features."
+          />
+        ),
         tags: [
           {
             id: 1,
@@ -248,10 +279,27 @@ class VerticalTimeline extends React.Component<Props, State> {
       },
       {
         id: 3,
-        headline: 'Self Improvement',
-        position: 'None',
-        timespan: 'September 2018 - Present',
-        description: `Изучение веб-технологий и реализация веб-приложений на их основе.`,
+        headline: (
+          <FormattedMessage
+            id="Experience.SelfImprovement.Headline"
+            defaultMessage="Self Improvement"
+          />
+        ),
+        position: (
+          <FormattedMessage id="Experience.SelfImprovement.Position" defaultMessage="None" />
+        ),
+        timespan: (
+          <FormattedMessage
+            id="Experience.SelfImprovement.Timespan"
+            defaultMessage="September 2018 - Present"
+          />
+        ),
+        description: (
+          <FormattedMessage
+            id="Experience.SelfImprovement.Description"
+            defaultMessage="I am discovering new web technologies and implementing web applications based by them."
+          />
+        ),
         tags: [
           {
             id: 1,
@@ -270,6 +318,11 @@ class VerticalTimeline extends React.Component<Props, State> {
       },
     ],
   };
+
+  shouldComponentUpdate(nextProps: Props) {
+    const { isInViewport } = this.props;
+    return nextProps.isInViewport !== isInViewport;
+  }
 
   render() {
     const { viewable, items } = this.state;

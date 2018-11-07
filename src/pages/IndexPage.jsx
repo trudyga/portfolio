@@ -1,83 +1,34 @@
 // @flow
-
 import React, { Component } from 'react';
-import { Layout } from 'antd';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
-import Scene from '../components/background/Scene';
-import SiteNav from '../components/menu/SiteNav';
+import posed from 'react-pose';
+import { throttle } from 'throttle-debounce';
+import Introduction from '../components/introduction/Introduction';
+import InlineNav from '../components/menu/InlineNav';
 import AboutMe from '../components/me/AboutMe';
 import ContactMe from '../components/me/ContactMe';
 import Experience from '../components/experience/VerticalTimeline';
 import Projects from '../components/projects/Projects';
 
-const { Content, Sider } = Layout;
-
-const FullScreenLayout = styled(Layout)`
-  height: 100%;
-  width: 100%;
+const Page = styled.div`
+  background: #222;
 `;
 
-const FullScreenScene = styled(Scene)`
-  position: absolute;
+const TransparentHeader = styled.div`
+  box-shadow: 10px 0 5px black;
+  display: block;
+  background: #333;
+  position: fixed;
   top: 0;
   left: 0;
-`;
-
-const StyledContent = styled(Content)`
-  max-width: 1000px;
-  margin: 0 auto;
-  background: transparent;
+  width: 100%;
   z-index: 1;
+  overflow: hidden;
 `;
 
-const TransparentSider = styled(Sider)`
-  background: transparent !important;
-`;
-
-const CenteredWrapper = styled.div`
-  position: relative;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const IntroductoryMessage = styled.div`
-  margin-left: 20px;
-`;
-
-const HeadlineMessage = styled.div`
-  display: inline-block;
-  min-height: 90px;
-`;
-const FirstWord = styled.div`
-  position: relative;
-  display: inline-block;
-`;
-
-const BackdropText = styled.i`
-  font-family: 'Oleo Script Swash Caps', cursive;
-  position: absolute;
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 75px;
-`;
-
-const PrimaryText = styled.span`
-  font-family: 'Gabriela', serif;
-  color: white
-  position: relative;
-  top: 45px;
-  font-size: 25px;
-  left: 2em;
-  text-transform: uppercase;
-`;
-
-const DescriptionText = styled.p`
-  margin: 0;
-  font-family: 'Gabriela', serif;
-  color: white
-  font-size: 25px;
+const IntroductionBlock = styled.div`
+  height: 100vh;
+  width: 100%;
 `;
 
 const AboutMeBlock = styled.div`
@@ -128,8 +79,10 @@ const ExperienceBackground = styled.div`
 const ProjectsBlock = styled.div`
   position: relative;
   top: -200px;
+  margin-bottom: -200px;
   background: transparent;
   padding: 10vh 0;
+  z-index: 0;
 `;
 
 const ProjectsBackground = styled.div`
@@ -147,9 +100,9 @@ const ProjectsBackground = styled.div`
 
 const ContactMeBlock = styled.div`
   position: relative;
-  top: -200px;
   background: transparent;
   padding: 2em 0;
+  z-index: 0;
 `;
 
 const ContactMeBackground = styled.div`
@@ -165,13 +118,24 @@ const ContactMeBackground = styled.div`
   background-attachment: fixed;
 `;
 
-type Props = {};
+const AnimatedHeader = posed(TransparentHeader)({
+  visible: {
+    opacity: 1,
+    height: 'auto',
+    transition: {
+      duration: 300,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 300,
+    },
+  },
+});
 
-type State = {
-  menuCollapsed: boolean,
-};
-
-function parallaxBlock(element, styles, parallaxSettings) {
+function parallaxBlock(element: HTMLElement, styles, parallaxSettings: Object) {
   const paddingTop = parseFloat(styles.getPropertyValue('padding-top'));
   const marginTop = parseFloat(styles.getPropertyValue('margin-top'));
 
@@ -187,9 +151,47 @@ function parallaxBlock(element, styles, parallaxSettings) {
   element.style.transform = `translateY(-${parallaxSettings.current}px)`; // eslint-disable-line
 }
 
+function isAnyPartOfElementInViewport(el: HTMLElement) {
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+  const vertInView = rect.top < windowHeight && rect.top + rect.height > 0;
+  const horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
+
+  return vertInView && horInView;
+}
+
+function getScreenVerticalTakenPlace(el?: HTMLElement) {
+  if (!el) return 0;
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  const top = Math.min(rect.top < 0 ? 0 : rect.top, windowHeight);
+  const bottom = Math.min(rect.bottom > windowHeight ? windowHeight : rect.bottom, windowHeight);
+
+  return (bottom - top) / windowHeight;
+}
+
+type Props = {};
+
+type State = {
+  displayTopNav: boolean,
+  currentBlock: 'about' | 'experience' | 'projects',
+};
+
 class IndexPage extends Component<Props, State> {
+  introductionBlock: ?HTMLElement = null;
+
+  aboutMeBlock: ?HTMLElement = null;
+
+  projectsBlock: ?HTMLElement = null;
+
+  expBack: ?HTMLElement = null;
+
   state = {
-    menuCollapsed: true,
+    displayTopNav: false,
+    currentBlock: 'about',
   };
 
   parallax = {
@@ -202,25 +204,18 @@ class IndexPage extends Component<Props, State> {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    const throttledCurrentBlockDetection = throttle(200, this.detectCurrentBlock);
+    const throttledToggleTopMenu = throttle(200, this.toggleTopMenu);
+    window.addEventListener('scroll', this.parallaxExperience);
+    window.addEventListener('scroll', () => {
+      throttledCurrentBlockDetection();
+      throttledToggleTopMenu();
+    });
   }
 
-  collapseMenu = (collapsed: boolean) => {
-    this.setState(() => ({
-      menuCollapsed: collapsed,
-    }));
-  };
-
-  handleScroll = () => {
-    const lastScrollPosition = window.scrollY;
-
+  parallaxExperience = () => {
     if (this.expBack) {
-      parallaxBlock(
-        this.expBack,
-        window.getComputedStyle(this.expBack),
-        this.parallax.expBlock,
-        lastScrollPosition
-      );
+      parallaxBlock(this.expBack, window.getComputedStyle(this.expBack), this.parallax.expBlock);
     }
 
     if (!this.parallax.ticking) {
@@ -232,51 +227,70 @@ class IndexPage extends Component<Props, State> {
     }
   };
 
-  render() {
-    const { menuCollapsed } = this.state;
+  toggleTopMenu = () => {
+    const { displayTopNav } = this.state;
 
+    if (this.introductionBlock) {
+      const needDisplayTopNav = !isAnyPartOfElementInViewport(this.introductionBlock);
+
+      if (needDisplayTopNav !== displayTopNav) {
+        this.setState({
+          displayTopNav: needDisplayTopNav,
+        });
+      }
+    }
+  };
+
+  detectCurrentBlock = () => {
+    const { currentBlock } = this.state;
+
+    if (this.expBack && this.aboutMeBlock && this.projectsBlock) {
+      const items = [
+        {
+          name: 'about',
+          value: getScreenVerticalTakenPlace(this.aboutMeBlock),
+        },
+        {
+          name: 'experience',
+          value: getScreenVerticalTakenPlace(this.expBack),
+        },
+        {
+          name: 'projects',
+          value: getScreenVerticalTakenPlace(this.projectsBlock),
+        },
+      ].sort((l, r) => r.value - l.value);
+
+      const newCurrentBlock = items[0].name;
+
+      if (newCurrentBlock !== currentBlock) {
+        this.setState({
+          currentBlock: newCurrentBlock,
+        });
+      }
+    }
+  };
+
+  render() {
+    const { displayTopNav, currentBlock } = this.state;
     return (
-      <React.Fragment>
-        <FullScreenLayout style={{ flexDirection: 'row-reverse' }}>
-          <FullScreenScene />
-          <TransparentSider
-            theme="dark"
-            collapsible={false}
-            collapsed={menuCollapsed}
-            onCollapse={this.collapseMenu}
-          >
-            <SiteNav transparentBackground collapsed={menuCollapsed} />
-          </TransparentSider>
-          <StyledContent style={{ background: 'transparent' }}>
-            <CenteredWrapper>
-              <IntroductoryMessage>
-                <HeadlineMessage>
-                  <FirstWord>
-                    <BackdropText>
-                      <FormattedMessage id="IndexPage.Welcome.Backdrop" defaultMessage="Hello" />
-                    </BackdropText>
-                    <PrimaryText>
-                      <FormattedMessage id="IndexPage.Welcome.Title" defaultMessage="Hello" />
-                    </PrimaryText>
-                  </FirstWord>
-                </HeadlineMessage>
-                <DescriptionText>
-                  <FormattedMessage
-                    id="IndexPage.Welcome.Description.Name"
-                    defaultMessage="My name is Vladislav Sereda."
-                  />
-                </DescriptionText>
-                <DescriptionText>
-                  <FormattedMessage
-                    id="IndexPage.Welcome.Description.Role"
-                    defaultMessage="I'm Web developer."
-                  />
-                </DescriptionText>
-              </IntroductoryMessage>
-            </CenteredWrapper>
-          </StyledContent>
-        </FullScreenLayout>
-        <AboutMeBlock id="aboutMe">
+      <Page>
+        <AnimatedHeader pose={displayTopNav ? 'visible' : 'hidden'} key="introduction">
+          <InlineNav currentBlock={currentBlock} />
+        </AnimatedHeader>
+        <IntroductionBlock
+          innerRef={mount => {
+            this.introductionBlock = mount;
+          }}
+        >
+          <Introduction />
+        </IntroductionBlock>
+
+        <AboutMeBlock
+          id="aboutMe"
+          innerRef={mount => {
+            this.aboutMeBlock = mount;
+          }}
+        >
           <AboutMe />
         </AboutMeBlock>
         <ExperienceBlock
@@ -288,10 +302,10 @@ class IndexPage extends Component<Props, State> {
           <Experience />
         </ExperienceBlock>
         <ProjectsBlock
-          id="projects"
           innerRef={mount => {
-            this.projectBack = mount;
+            this.projectsBlock = mount;
           }}
+          id="projects"
         >
           <ProjectsBackground />
           <Projects />
@@ -300,7 +314,7 @@ class IndexPage extends Component<Props, State> {
           <ContactMe />
           <ContactMeBackground />
         </ContactMeBlock>
-      </React.Fragment>
+      </Page>
     );
   }
 }

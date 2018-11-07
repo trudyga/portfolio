@@ -1,6 +1,17 @@
-/* eslint-disable */
-
-import * as THREE from 'three';
+import {
+  Color,
+  TextureLoader,
+  Vector3,
+  BufferGeometry,
+  BufferAttribute,
+  ShaderMaterial,
+  Points,
+  LineSegments,
+  LineBasicMaterial,
+  Geometry,
+  Group,
+  VertexColors,
+} from 'three';
 
 import dotTexture from '../../../../public/images/dotTexture.png';
 import vertexShader from '../vertexShader.glsl'; // eslint-disable-line
@@ -22,12 +33,10 @@ import { findAvarageDistance } from '../utils/HyperSphereHelper';
 const radius = 30;
 const pointsAmount = 400;
 const pointSize = 1.5;
-const connectLength = 4;
-const colors = [new THREE.Color(0xe83b6c), new THREE.Color(0xff749b), new THREE.Color(0x6e5f6a)];
-console.log('Colors', colors);
-const loader = new THREE.TextureLoader();
+const colors = [new Color(0xe83b6c), new Color(0xff749b), new Color(0x6e5f6a)];
+const loader = new TextureLoader();
 loader.crossOrigin = '';
-const getRandomColorIndex = colors => Math.floor(Math.random() * colors.length);
+const getRandomColorIndex = colorsList => Math.floor(Math.random() * colorsList.length);
 
 const pointPositions = new Float32Array(pointsAmount * 3);
 const pointColors = new Float32Array(pointsAmount * 3);
@@ -36,7 +45,7 @@ const points = VogelSpherePoints.getPoints(pointsAmount);
 const vertices = new Array(pointsAmount);
 
 points.forEach(({ x, y, z }, i) => {
-  const vertex = new THREE.Vector3(x, y, z);
+  const vertex = new Vector3(x, y, z);
   vertex.colorIndex = getRandomColorIndex(colors);
   vertex.pointSize = pointSize;
   vertex.multiplyScalar(radius);
@@ -44,7 +53,7 @@ points.forEach(({ x, y, z }, i) => {
 
   const pointColor = colors[vertex.colorIndex];
 
-  pointPositions[i * 3] = vertex.x
+  pointPositions[i * 3] = vertex.x;
   pointPositions[i * 3 + 1] = vertex.y;
   pointPositions[i * 3 + 2] = vertex.z;
   pointColors[i * 3] = pointColor.r;
@@ -58,17 +67,16 @@ class HyperSphere {
     this.vertices = vertices;
 
     // create geometry
-    const pointsGeometry = new THREE.BufferGeometry();
-    console.log('Point colors', pointColors);
+    const pointsGeometry = new BufferGeometry();
 
-    const positionsBufferAttribute = new THREE.BufferAttribute(pointPositions, 3);
+    const positionsBufferAttribute = new BufferAttribute(pointPositions, 3);
     pointsGeometry.addAttribute('position', positionsBufferAttribute);
-    const colorsBufferAttribute = new THREE.BufferAttribute(pointColors, 3);
+    const colorsBufferAttribute = new BufferAttribute(pointColors, 3);
     pointsGeometry.addAttribute('color', colorsBufferAttribute);
-    const sizesBufferAttribute = new THREE.BufferAttribute(pointSizes, 1);
+    const sizesBufferAttribute = new BufferAttribute(pointSizes, 1);
     pointsGeometry.addAttribute('size', sizesBufferAttribute);
     // create materials
-    const pointsShaderMaterial = new THREE.ShaderMaterial({
+    const pointsShaderMaterial = new ShaderMaterial({
       uniforms: {
         texture: {
           value: loader.load(dotTexture),
@@ -80,34 +88,31 @@ class HyperSphere {
     });
 
     // create points mesh
-    this.points = new THREE.Points(pointsGeometry, pointsShaderMaterial);
+    this.points = new Points(pointsGeometry, pointsShaderMaterial);
     this.pointsAvgDistance = findAvarageDistance(vertices) * 1.2;
-    console.log(pointPositions);
-    console.log('points', this.points);
 
     // create sphere lines
     const linesGeometry = this.getLinesGeometry();
-    console.log('linesGeometry', linesGeometry);
-    const linesMaterial = new THREE.LineBasicMaterial({
+    const linesMaterial = new LineBasicMaterial({
       color: 0xffffff,
       transparent: true,
       opacity: 0.5,
-      vertexColors: THREE.VertexColors,
+      vertexColors: VertexColors,
     });
 
-    const lineSegments = new THREE.LineSegments(linesGeometry, linesMaterial);
-    this.lines = new THREE.Group();
+    const lineSegments = new LineSegments(linesGeometry, linesMaterial);
+    this.lines = new Group();
     this.lines.add(lineSegments);
   }
 
-  getLinesGeometry () {
-    const { vertices, pointsAvgDistance } = this;
-    const segmentsGeom = new THREE.Geometry();
+  getLinesGeometry() {
+    const { vertices, pointsAvgDistance } = this; // eslint-disable-line
+    const segmentsGeom = new Geometry();
     const distance = pointsAvgDistance * 1.2;
 
-    for (let i = 0; i < vertices.length; i++) {
+    for (let i = 0; i < vertices.length; i += 1) {
       const lineStart = vertices[i];
-      for (let j = 0; j < vertices.length; j++) {
+      for (let j = 0; j < vertices.length; j += 1) {
         const lineEnd = vertices[j];
         const distanceTo = lineStart.distanceTo(lineEnd);
         if (i !== j && distanceTo < distance) {
