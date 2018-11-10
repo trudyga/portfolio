@@ -4,14 +4,12 @@
   "description": "My portfolio web-page",
   "main": "index.js",
   "scripts": {
-    "start": "npm run prod",
-    "dev": "npm run start",
+    "start": "./tools/start.sh",
+    "dev": "webpack-dev-server --open --hot --config ./tools/webpack.dev.js",
     "prod": "npm run build && npm run serve",
-
     "build:langs": "NODE_ENV='production' babel-node ./scripts/mergeMessages.js",
-    "build": "npm run build:langs && webpack --config ./config/webpack.prod.js && cp -r public/ dist/",
-    "serve": "serve -l 80 -s -c ./config/serve.json",
-
+    "build": "npm run build:langs && webpack --config ./tools/webpack.prod.js && cp -r assets/ dist/",
+    "serve": "serve -l 80 -s -c ./tools/serve.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src"
   },
@@ -39,6 +37,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.9.1",
     "babel-plugin-react-intl": "^3.0.1",
+    "compression-webpack-plugin": "^2.0.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "17.1.0",
@@ -56,6 +55,7 @@
     "react-svg-loader": "^2.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",

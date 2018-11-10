@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import type { Node } from 'react';
 import styled from 'styled-components';
 import { Tag } from 'antd';
 
@@ -73,24 +74,26 @@ type TagType = {
 
 type Props = {
   headline: string,
-  position: string,
+  position: Node | null,
   timespan: string,
-  description: React.Node,
+  description: Node,
   tags: Array<TagType>,
-  icon: React.Node,
+  icon: Node,
 };
 
 const TimelineContent = ({ headline, position, timespan, description, tags, icon }: Props) => (
   <TimelineContentBox>
     <Headline>{headline}</Headline>
     <Info>
-      <Position>
-        {icon}
-        <span>
-          &ensp;
-          {position}
-        </span>
-      </Position>
+      {position && (
+        <Position>
+          {icon}
+          <span>
+            &ensp;
+            {position}
+          </span>
+        </Position>
+      )}
       <TimeSpan>{timespan}</TimeSpan>
     </Info>
     <Description>{description}</Description>

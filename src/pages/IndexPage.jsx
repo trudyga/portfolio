@@ -38,7 +38,7 @@ const AboutMeBlock = styled.div`
     padding: 50vh 0;
   }
 
-  background-image: url('/public/images/trianglify.svg');
+  background-image: url('/assets/images/trianglify.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -70,7 +70,7 @@ const ExperienceBackground = styled.div`
   width: 100%;
   z-index: -1;
 
-  background-image: url('/public/images/trianglify_experience_2.svg');
+  background-image: url('/assets/images/trianglify_experience_2.svg');
   background-position-x: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -92,7 +92,7 @@ const ProjectsBackground = styled.div`
   width: 100%;
   z-index: -1;
 
-  background-image: url('/public/images/trianglify.svg');
+  background-image: url('/assets/images/trianglify.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -112,7 +112,7 @@ const ContactMeBackground = styled.div`
   width: 100%;
   z-index: -1;
 
-  background-image: url('/public/images/trianglify-bluish-green2.svg');
+  background-image: url('/assets/images/trianglify-bluish-green2.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -152,9 +152,11 @@ function parallaxBlock(element: HTMLElement, styles, parallaxSettings: Object) {
 }
 
 function isAnyPartOfElementInViewport(el: HTMLElement) {
+  const documentEl: any = document.documentElement;
   const rect = el.getBoundingClientRect();
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+  const windowHeight = window.innerHeight || documentEl.clientHeight;
+  const windowWidth = window.innerWidth || documentEl.clientWidth;
 
   const vertInView = rect.top < windowHeight && rect.top + rect.height > 0;
   const horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
@@ -181,14 +183,6 @@ type State = {
 };
 
 class IndexPage extends Component<Props, State> {
-  introductionBlock: ?HTMLElement = null;
-
-  aboutMeBlock: ?HTMLElement = null;
-
-  projectsBlock: ?HTMLElement = null;
-
-  expBack: ?HTMLElement = null;
-
   state = {
     displayTopNav: false,
     currentBlock: 'about',
@@ -269,6 +263,14 @@ class IndexPage extends Component<Props, State> {
       }
     }
   };
+
+  introductionBlock: HTMLElement;
+
+  aboutMeBlock: HTMLElement;
+
+  projectsBlock: HTMLElement;
+
+  expBack: HTMLElement;
 
   render() {
     const { displayTopNav, currentBlock } = this.state;

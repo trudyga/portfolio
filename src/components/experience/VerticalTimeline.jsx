@@ -285,9 +285,7 @@ class VerticalTimeline extends React.Component<Props, State> {
             defaultMessage="Self Improvement"
           />
         ),
-        position: (
-          <FormattedMessage id="Experience.SelfImprovement.Position" defaultMessage="None" />
-        ),
+        position: null,
         timespan: (
           <FormattedMessage
             id="Experience.SelfImprovement.Timespan"
@@ -314,7 +312,7 @@ class VerticalTimeline extends React.Component<Props, State> {
             value: 'Three.js',
           },
         ],
-        icon: <Icon style={{ fontSize: '1em' }} type="rocket" theme="outlined" />,
+        icon: null,
       },
     ],
   };

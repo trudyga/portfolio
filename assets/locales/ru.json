@@ -1,6 +1,6 @@
 {
   "AboutMe.Title": "Я Владислав Середа. Full-stack веб разработчик",
-  "AboutMe.Description": "Мои навыки разнообразны. Я могу заниматься как {frontEnd} так и {backEnd} разработкой и способен из макет превратить в готовое решение.",
+  "AboutMe.Description": "Мои навыки разнообразны. Я могу заниматься как {frontEnd} так и {backEnd} разработкой и способен макет превратить в готовое решение.",
   "AboutMe.Skills.Title": "Мои навыки",
   "AboutMe.Skills.Personal.Title": "Личные навыки",
   "Menu.Open.ButtonText": "Меню",
@@ -23,7 +23,6 @@
   "Experience.Inzite.Timespan": "Октябрь 2017 - Август 2018",
   "Experience.Inzite.Description": "Я был членом команды разработки, выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей веб-платформы.",
   "Experience.SelfImprovement.Headline": "Саморазвитие",
-  "Experience.SelfImprovement.Position": "Нет",
   "Experience.SelfImprovement.Timespan": "Сентябрь 2018 - Сейчас",
   "Experience.SelfImprovement.Description": "Изучение веб-технологий и реализация веб-приложений на их основе.",
   "Projects.SectionTitle": "Мои проекты",

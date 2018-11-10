@@ -3,12 +3,9 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import ru from 'react-intl/locale-data/ru';
-import ParalaxPage from './pages/ParalaxPage';
 import IndexPage from './pages/IndexPage';
-import ExperiencePage from './pages/ExperiencePage';
-import SkillsPage from './pages/SkillsPage';
 
-import localeData from '../public/locales/data.json';
+import localeData from '../assets/locales/data.json';
 
 addLocaleData([...en, ...ru]);
 
@@ -24,9 +21,6 @@ const ApplicationRoutes = ({ match: { url } }: ApplicationRoutesProps) => (
     <Route exact path="/" component={IndexPage} />
     <Route exact path={`${url}`} component={IndexPage} />
     <Route path={`${url}/home`} component={IndexPage} />
-    <Route path={`${url}/skills`} component={SkillsPage} />
-    <Route path={`${url}/experience`} component={ExperiencePage} />
-    <Route path={`${url}/paralax`} component={ParalaxPage} />
     <Route component={() => <h1>404 Page</h1>} />
   </Switch>
 );
@@ -38,7 +32,6 @@ const IntlRouter = ({ location }: IntlRouterProps) => {
   function getCurrentLocale() {
     const parts = location.pathname.split('/');
     const locale = parts.length > 0 && parts[1];
-    console.log('location', location, 'locale', locale);
 
     if (locale === 'ru') {
       return 'ru';

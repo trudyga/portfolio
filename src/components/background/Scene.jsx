@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
+import { Scene } from 'three/src/scenes/Scene';
+import { PerspectiveCamera } from 'three/src/cameras/PerspectiveCamera';
+import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer';
+import { Clock } from 'three/src/core/Clock';
 import * as Stats from 'stats.js';
 import WebGL from './utils/WebGL';
 // import HyperSphere from './objects/HyperSphere';

@@ -8,7 +8,7 @@
     "@babel/plugin-proposal-class-properties",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
     ["react-intl", {
-      "messagesDir": "./public/messages/"
+      "messagesDir": "./assets/messages/"
     }]
   ]
 }

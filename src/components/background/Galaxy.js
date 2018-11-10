@@ -1,20 +1,18 @@
 // @flow
-import {
-  Group,
-  Points,
-  Color,
-  Geometry,
-  Vector3,
-  TextureLoader,
-  BufferGeometry,
-  BufferAttribute,
-  ShaderMaterial,
-  LineBasicMaterial,
-  LineSegments,
-  VertexColors,
-} from 'three';
+import { Geometry } from 'three/src/core/Geometry';
+import { BufferGeometry } from 'three/src/core/BufferGeometry';
+import { BufferAttribute } from 'three/src/core/BufferAttribute';
+import { Points } from 'three/src/objects/Points';
+import { VertexColors } from 'three/src/constants';
+import { Group } from 'three/src/objects/Group';
+import { LineSegments } from 'three/src/objects/LineSegments';
+import { LineBasicMaterial } from 'three/src/materials/LineBasicMaterial';
+import { ShaderMaterial } from 'three/src/materials/ShaderMaterial';
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { Vector3 } from 'three/src/math/Vector3';
+import { Color } from 'three/src/math/Color';
 
-import dotTexture from '../../../public/images/dotTexture.png';
+import dotTexture from '../../../assets/images/dotTexture.png';
 import vertexShader from './vertexShader.glsl'; // eslint-disable-line
 import fragmentShader from './fragmentShader.glsl'; // eslint-disable-line
 

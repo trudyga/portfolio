@@ -36,10 +36,6 @@
     "defaultMessage": "Self Improvement"
   },
   {
-    "id": "Experience.SelfImprovement.Position",
-    "defaultMessage": "None"
-  },
-  {
     "id": "Experience.SelfImprovement.Timespan",
     "defaultMessage": "September 2018 - Present"
   },

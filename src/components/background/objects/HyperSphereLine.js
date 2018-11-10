@@ -1,5 +1,8 @@
 // @flow
-import { LineBasicMaterial, Geometry, Vector3, Line } from 'three';
+import { Geometry } from 'three/src/core/Geometry';
+import { Line } from 'three/src/objects/Line';
+import { LineBasicMaterial } from 'three/src/materials/LineBasicMaterial';
+import { Vector3 } from 'three/src/math/Vector3';
 import HyperSpherePoint from './HyperSpherePoint';
 
 class HyperSphereLine {

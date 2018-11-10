@@ -1,19 +1,17 @@
-import {
-  Color,
-  TextureLoader,
-  Vector3,
-  BufferGeometry,
-  BufferAttribute,
-  ShaderMaterial,
-  Points,
-  LineSegments,
-  LineBasicMaterial,
-  Geometry,
-  Group,
-  VertexColors,
-} from 'three';
+import { Geometry } from 'three/src/core/Geometry';
+import { BufferGeometry } from 'three/src/core/BufferGeometry';
+import { BufferAttribute } from 'three/src/core/BufferAttribute';
+import { Points } from 'three/src/objects/Points';
+import { VertexColors } from 'three/src/constants';
+import { Group } from 'three/src/objects/Group';
+import { LineSegments } from 'three/src/objects/LineSegments';
+import { LineBasicMaterial } from 'three/src/materials/LineBasicMaterial';
+import { ShaderMaterial } from 'three/src/materials/ShaderMaterial';
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { Vector3 } from 'three/src/math/Vector3';
+import { Color } from 'three/src/math/Color';
 
-import dotTexture from '../../../../public/images/dotTexture.png';
+import dotTexture from '../../../../assets/images/dotTexture.png';
 import vertexShader from '../vertexShader.glsl'; // eslint-disable-line
 import fragmentShader from '../fragmentShader.glsl'; // eslint-disable-line
 
@@ -33,7 +31,7 @@ import { findAvarageDistance } from '../utils/HyperSphereHelper';
 const radius = 30;
 const pointsAmount = 400;
 const pointSize = 1.5;
-const colors = [new Color(0xe83b6c), new Color(0xff749b), new Color(0x6e5f6a)];
+const colors = [new Color('#e83b6c'), new Color('#ff749b'), new Color('#6e5f6a')];
 const loader = new TextureLoader();
 loader.crossOrigin = '';
 const getRandomColorIndex = colorsList => Math.floor(Math.random() * colorsList.length);
@@ -94,7 +92,7 @@ class HyperSphere {
     // create sphere lines
     const linesGeometry = this.getLinesGeometry();
     const linesMaterial = new LineBasicMaterial({
-      color: 0xffffff,
+      color: new Color('#ffffff'),
       transparent: true,
       opacity: 0.5,
       vertexColors: VertexColors,

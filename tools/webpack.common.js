@@ -10,25 +10,14 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'main.js',
-    publicPath: '/', // why, why ????
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx'],
   },
-  devServer: {
-    inline: true,
-    port: 8080,
-    historyApiFallback: true,
-    hot: true,
-  },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
       {
         test: /\.css$/,
         use: [
@@ -60,7 +49,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'file-loader?name=public/images/[name].[ext]',
+            loader: 'file-loader?name=assets/images/[name].[ext]',
           },
         ],
       },

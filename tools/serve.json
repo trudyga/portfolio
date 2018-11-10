@@ -1,0 +1,7 @@
+{
+  "public": "/dist",
+  "unlisted": [
+    ".vscode",
+    ".git"
+  ]
+}

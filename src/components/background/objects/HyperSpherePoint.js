@@ -1,5 +1,5 @@
 // @flow
-import { Vector3 } from 'three';
+import { Vector3 } from 'three/src/math/Vector3';
 
 class HyperSpherePoint {
   x: number;

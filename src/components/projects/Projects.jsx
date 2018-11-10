@@ -40,13 +40,13 @@ const Project = styled.div`
 const ProjectImage = styled.div`
   flex: 1;
   margin: 10px;
-  border-radius: 5px;
 `;
 
 const Image = styled.img`
   height: 100%;
   width: 100%;
   object-fit: fill;
+  border-radius: 10px;
 `;
 
 const Description = styled.div`
@@ -93,7 +93,7 @@ const Projects = () => (
     <ProjectsList>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/public/images/anime3.png" />
+          <Image alt="anime" src="/assets/images/Inzite.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Inzite</ProjectTitle>
@@ -115,7 +115,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/public/images/anime3.png" />
+          <Image alt="anime" src="/assets/images/MediumClone.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Medium Clone</ProjectTitle>
@@ -126,7 +126,12 @@ const Projects = () => (
             />
           </ProjectOverview>
           <ProjectControls>
-            <Link bordered href="https://inzite.io/" rel="noopener noreferrer" target="_blank">
+            <Link
+              bordered
+              href="https://github.com/trudyga/medium_clone"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <LinkText>
                 <FormattedMessage id="Projects.ViewButton" defaultMessage="View Project" />
               </LinkText>
@@ -137,7 +142,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/public/images/anime3.png" />
+          <Image alt="anime" src="/assets/images/StatApp.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Stat App</ProjectTitle>
@@ -164,7 +169,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/public/images/anime3.png" />
+          <Image alt="anime" src="/assets/images/NotesApp.png" />
         </ProjectImage>
 
         <Description>

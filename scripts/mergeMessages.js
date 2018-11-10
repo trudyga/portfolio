@@ -6,13 +6,13 @@ import * as fs from 'fs';
 import { sync as globSync } from 'glob';
 import { sync as mkdirpSync } from 'mkdirp';
 
-const MESSAGES_PATTERN = './public/messages/**/*.json';
-const LANG_DIR = './public/locales/';
-const LANG_PATTERN = './public/locales/*.json';
+const MESSAGES_PATTERN = './assets/messages/**/*.json';
+const LANG_DIR = './assets/locales/';
+const LANG_PATTERN = './assets/locales/*.json';
 
-// Try to delete current json files from public/locales
+// Try to delete current json files from assets/locales
 try {
-  fs.unlinkSync('./public/locales/data.json');
+  fs.unlinkSync('./assets/locales/data.json');
 } catch (error) {
   console.log(error);
 }
