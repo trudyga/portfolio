@@ -13,6 +13,12 @@ const definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': '"production"'
 });
 
+
+const plugins = [definePlugin, compressionPlugin];
+if (process.env.ANALYZE_BUNDLE) {
+  plugins.push(bundleAnalyzerPlugin);
+}
+
 module.exports = merge(common, {
   mode: 'production',
   devtool: '@cheap-module-source-map',
@@ -23,7 +29,7 @@ module.exports = merge(common, {
       use: ['babel-loader'],
     }],
   },
-  plugins: [definePlugin, compressionPlugin, bundleAnalyzerPlugin],
+  plugins: plugins,
   optimization: {
     minimize: true,
     sideEffects: true,

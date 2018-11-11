@@ -93,7 +93,7 @@ const Projects = () => (
     <ProjectsList>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/assets/images/Inzite.png" />
+          <Image alt="Inzite Project" src="/assets/images/Inzite.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Inzite</ProjectTitle>
@@ -115,7 +115,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/assets/images/MediumClone.png" />
+          <Image alt="Medium Clone Project" src="/assets/images/MediumClone.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Medium Clone</ProjectTitle>
@@ -142,7 +142,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/assets/images/StatApp.png" />
+          <Image alt="Stat App Project" src="/assets/images/StatApp.png" />
         </ProjectImage>
         <Description>
           <ProjectTitle>Stat App</ProjectTitle>
@@ -169,7 +169,7 @@ const Projects = () => (
       </Project>
       <Project>
         <ProjectImage>
-          <Image alt="anime" src="/assets/images/NotesApp.png" />
+          <Image alt="Notes Project" src="/assets/images/NotesApp.png" />
         </ProjectImage>
 
         <Description>

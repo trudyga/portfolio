@@ -49,7 +49,7 @@ const ContactMe = () => (
   <Container>
     <Creator>© 2018 Sereda Vladislav</Creator>
     <Links>
-      <StyledLink href="#resume" rel="noopener noreferrer" target="_blank">
+      <StyledLink href="/assets/documents/resume.pdf" rel="noopener noreferrer" target="_blank">
         <LinkText>
           <FormattedMessage id="ContactMe.ResumeLink" defaultMessage="Resume" />
         </LinkText>
