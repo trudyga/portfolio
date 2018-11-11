@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { Layout } from 'antd';
+import WebGL from '../background/utils/WebGL';
 import Scene from '../background/Scene';
 import SiteNav from '../menu/SiteNav';
 
@@ -20,6 +21,16 @@ const FullScreenScene = styled(Scene)`
   top: 0;
   left: 0;
   z-index: -1;
+`;
+
+const FullScreenPlaceholder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vh;
+  z-index: -1;
+  background: black;
 `;
 
 const StyledContent = styled(Content)`
@@ -95,10 +106,11 @@ class Introduction extends React.PureComponent<Props, State> {
 
   render() {
     const { menuCollapsed } = this.state;
+    const isWebGL2Available = WebGL.isWebGL2Available();
 
     return (
       <FullScreenLayout style={{ flexDirection: 'row-reverse' }}>
-        <FullScreenScene />
+        {isWebGL2Available ? <FullScreenScene /> : <FullScreenPlaceholder />}
         <TransparentSider
           theme="dark"
           collapsible={false}
