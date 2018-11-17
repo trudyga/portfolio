@@ -70,4 +70,4 @@ const ContactMe = () => (
   </Container>
 );
 
-export default React.memo(ContactMe);
+export default ContactMe;

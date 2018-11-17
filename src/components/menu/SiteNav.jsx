@@ -68,8 +68,8 @@ const BottomStyledMenu = styled(StyledMenu)`
   right: 0;
 `;
 
-const MenuItemText = styled.div`
-  font-family: 'Gabriela', serif;
+const MenuItemText = styled.span`
+  font-family: auto;
   text-transform: uppercase;
   text-align: center;
 `;
@@ -117,14 +117,12 @@ const ExpandedMenuItems = styled.div`
 
 type Props = {
   transparentBackground?: boolean,
-  collapsed?: boolean,
   location: Object,
   onExpand?: void => void,
   onShrink?: void => void,
 };
 
 type State = {
-  current: string,
   redirectToLocale: string,
   isExpanded: boolean,
 };
@@ -138,7 +136,6 @@ class SiteNav extends Component<Props, State> {
   };
 
   state = {
-    current: '',
     redirectToLocale: '',
     isExpanded: false,
   };
@@ -148,12 +145,6 @@ class SiteNav extends Component<Props, State> {
     const isRussian = /^\/ru/i.test(location.pathname);
 
     return isRussian ? 'ru' : 'en';
-  };
-
-  handleClick = e => {
-    this.setState({
-      current: e.key,
-    });
   };
 
   redirectToEn = () => {
@@ -194,18 +185,13 @@ class SiteNav extends Component<Props, State> {
   };
 
   render() {
-    const { transparentBackground, collapsed } = this.props;
-    const { current, redirectToLocale, isExpanded } = this.state;
+    const { transparentBackground } = this.props;
+    const { redirectToLocale, isExpanded } = this.state;
     const currentLocale = this.getCurrentLocale();
 
     return (
       <MenuContainer>
-        <StyledMenu
-          onClick={this.handleClick}
-          selectedKeys={[current]}
-          inlineCollapsed={collapsed}
-          transparentBackground={transparentBackground}
-        >
+        <StyledMenu transparentBackground={transparentBackground}>
           <MenuItem selected onClick={this.toggleMenu}>
             <MenuItemIcon selected>{isExpanded ? <CancelIcon /> : <MenuIcon />}</MenuItemIcon>
             <MenuItemText>

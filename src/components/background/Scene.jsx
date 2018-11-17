@@ -9,6 +9,8 @@ import WebGL from './utils/WebGL';
 // import Galaxy from './Galaxy';
 import HyperSphere from './objects/HyperSphereV2';
 
+const isWebGL2Available = WebGL.isWebGL2Available();
+
 type Props = {
   fullScreen?: boolean,
 };
@@ -18,6 +20,7 @@ class ThreeScene extends Component<Props> {
   };
 
   componentDidMount() {
+    if (!isWebGL2Available) return;
     const { fullScreen } = this.props;
     window.addEventListener('resize', this.handleResize, true);
     const width = fullScreen ? window.innerWidth : this.mount.clientWidth;
@@ -70,6 +73,8 @@ class ThreeScene extends Component<Props> {
   }
 
   componentWillUnmount() {
+    if (!isWebGL2Available) return;
+
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
     if (!PRODUCTION) {
@@ -80,11 +85,7 @@ class ThreeScene extends Component<Props> {
   }
 
   start = () => {
-    if (!WebGL.isWebGLAvailable()) {
-      const warning = WebGL.getWebGLErrorMessage();
-      this.mount.removeChild(this.renderer.domElement);
-      return this.mount.appendChild(warning);
-    }
+    if (!isWebGL2Available) return null;
 
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
@@ -94,10 +95,13 @@ class ThreeScene extends Component<Props> {
   };
 
   stop = () => {
+    if (!isWebGL2Available) return;
     cancelAnimationFrame(this.frameId);
   };
 
   animate = () => {
+    if (!isWebGL2Available) return;
+
     if (!PRODUCTION) {
       this.stats.begin();
       this.stats.end();
@@ -115,10 +119,12 @@ class ThreeScene extends Component<Props> {
   };
 
   renderScene = () => {
+    if (!isWebGL2Available) return;
     this.renderer.render(this.scene, this.camera);
   };
 
   handleResize = () => {
+    if (!isWebGL2Available) return;
     const { fullScreen } = this.props;
     const width = fullScreen ? window.innerWidth : this.mount.clientWidth;
     const height = fullScreen ? window.innerHeight : this.mount.clientHeight;
@@ -132,7 +138,12 @@ class ThreeScene extends Component<Props> {
     return (
       <Fragment>
         <div
-          style={{ position: 'absolute', width: '100%', height: '100%', overflow: 'hidden' }}
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+          }}
           ref={mount => {
             this.mount = mount;
           }}

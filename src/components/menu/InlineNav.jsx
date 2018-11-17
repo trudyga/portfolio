@@ -22,8 +22,8 @@ const MenuItem = styled.div`
   }
 `;
 
-const MenuItemText = styled.div`
-  font-family: 'Gabriela', serif;
+const MenuItemText = styled.span`
+  font-family: auto;
   text-transform: uppercase;
   text-align: center;
 `;

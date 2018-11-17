@@ -126,4 +126,4 @@ const AboutMe = () => (
   </Layout>
 );
 
-export default React.memo(AboutMe);
+export default AboutMe;

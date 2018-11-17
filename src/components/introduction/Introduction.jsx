@@ -20,6 +20,8 @@ const FullScreenScene = styled(Scene)`
   position: absolute;
   top: 0;
   left: 0;
+  height: 100vh;
+  width: 100%;
   z-index: -1;
 `;
 
@@ -91,12 +93,23 @@ const DescriptionText = styled.p`
 type Props = {};
 type State = {
   menuCollapsed: boolean,
+  isWebGL2Available: boolean,
 };
 
-class Introduction extends React.PureComponent<Props, State> {
+class Introduction extends React.Component<Props, State> {
   state = {
     menuCollapsed: true,
+    isWebGL2Available: true,
   };
+
+  componentDidMount() {
+    const isWebGL2Available = WebGL.isWebGL2Available();
+    if (!isWebGL2Available) {
+      this.setState({
+        isWebGL2Available: false,
+      });
+    }
+  }
 
   collapseMenu = (collapsed: boolean) => {
     this.setState(() => ({
@@ -105,8 +118,7 @@ class Introduction extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { menuCollapsed } = this.state;
-    const isWebGL2Available = WebGL.isWebGL2Available();
+    const { menuCollapsed, isWebGL2Available } = this.state;
 
     return (
       <FullScreenLayout style={{ flexDirection: 'row-reverse' }}>
