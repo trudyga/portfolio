@@ -19,32 +19,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              module: true,
-              importLoaders: 1,
-              localIndentName: '[name]_[local]_[hash:base64]',
-              sourceMap: true,
-              minimize: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader', // creates style nodes from JS strings
-          'css-loader', // translates CSS into CommonJS
-          'sass-loader', // compiles Sass to CSS, using Node Sass by default
-        ],
-      },
-      {
         test: /\.(png|jpg|gif)$/i,
         exclude: /node_modules/,
         use: [
