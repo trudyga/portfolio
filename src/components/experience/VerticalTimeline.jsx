@@ -225,7 +225,7 @@ class VerticalTimeline extends React.Component<Props, State> {
         description: (
           <FormattedMessage
             id="Experience.Undergraduate.Description"
-            defaultMessage={`The fourth year student of the speciality "Software engineering" of the National Aviation University`}
+            defaultMessage={`The fifth year student of the speciality "Software engineering" of the National Aviation University`}
           />
         ),
         tags: [
@@ -279,40 +279,86 @@ class VerticalTimeline extends React.Component<Props, State> {
       },
       {
         id: 3,
-        headline: (
+        headline: <FormattedMessage id="Experience.Eleken.Headline" defaultMessage="Eleken" />,
+        position: (
           <FormattedMessage
-            id="Experience.SelfImprovement.Headline"
-            defaultMessage="Self Improvement"
+            id="Experience.Eleken.Position"
+            defaultMessage="Full Stack Web Developer"
           />
         ),
-        position: null,
         timespan: (
           <FormattedMessage
-            id="Experience.SelfImprovement.Timespan"
-            defaultMessage="September 2018 - Present"
+            id="Experience.Eleken.Timespan"
+            defaultMessage="November 2018 - April 2019"
           />
         ),
         description: (
           <FormattedMessage
-            id="Experience.SelfImprovement.Description"
-            defaultMessage="I am discovering new web technologies and implementing web applications based by them."
+            id="Experience.Eleken.Description"
+            defaultMessage="The company specializes in outsourcing. My position was the full-stack developer on the project bytelyfe.app and the front-end developer on the project share.link."
           />
         ),
         tags: [
           {
             id: 1,
-            value: 'React',
+            value: 'JavaScript',
           },
           {
             id: 2,
-            value: 'GraphQL',
+            value: 'Node.js',
           },
           {
             id: 3,
-            value: 'Three.js',
+            value: 'Mongo DB',
+          },
+          {
+            id: 4,
+            value: 'React',
           },
         ],
-        icon: null,
+        icon: <Icon style={{ fontSize: '1em' }} type="idcard" theme="outlined" />,
+      },
+      {
+        id: 4,
+        headline: <FormattedMessage id="Experience.Lun.Headline" defaultMessage="Lun" />,
+        position: (
+          <FormattedMessage
+            id="Experience.Lun.Position"
+            defaultMessage="Full Stack Web Developer"
+          />
+        ),
+        timespan: (
+          <FormattedMessage id="Experience.Lun.Timespan" defaultMessage="April 2019 - Present" />
+        ),
+        description: (
+          <FormattedMessage
+            id="Experience.Lun.Description"
+            defaultMessage="I am a developer of the marketing team. Working in a cross-functional team, I perform a variety of tasks. They are diverse: from the landing pages implementation for the marketing campaigns to the development and maintenance of the LunMisto website."
+          />
+        ),
+        tags: [
+          {
+            id: 1,
+            value: 'JavaScript',
+          },
+          {
+            id: 2,
+            value: 'React',
+          },
+          {
+            id: 3,
+            value: 'Mapbox.js',
+          },
+          {
+            id: 4,
+            value: 'PWA',
+          },
+          {
+            id: 2,
+            value: 'Node.js',
+          },
+        ],
+        icon: <Icon style={{ fontSize: '1em' }} type="idcard" theme="outlined" />,
       },
     ],
   };

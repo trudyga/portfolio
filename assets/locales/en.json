@@ -14,17 +14,27 @@
   "TopMenu.Items.Experience": "Experience",
   "TopMenu.Items.Projects": "Projects",
   "Experience.SectionTitle": "Experience",
+  
   "Experience.Undergraduate.Headline": "National Aviation University",
   "Experience.Undergraduate.Position": "Student",
   "Experience.Undergraduate.Timespan": "September 2015 - Present",
-  "Experience.Undergraduate.Description": "I'm the fourth year student of the speciality \"Software engineering\" of the National Aviation University.",
+  "Experience.Undergraduate.Description": "I'm the fifth year student of the speciality \"Software engineering\" of the National Aviation University.",
+  
   "Experience.Inzite.Headline": "Inzite LTD",
   "Experience.Inzite.Position": "Full Stack Web Developer",
   "Experience.Inzite.Timespan": "October 2017 - August 2018",
   "Experience.Inzite.Description": "I was a member of development team. I was working on service improvement and implementation of new web-platform features.",
-  "Experience.SelfImprovement.Headline": "Self Improvement",
-  "Experience.SelfImprovement.Timespan": "September 2018 - Present",
-  "Experience.SelfImprovement.Description": "I am discovering new web technologies and implementing web applications based on them.",
+  
+  "Experience.Eleken.Headline": "Eleken",
+  "Experience.Eleken.Position": "Full Stack Web Developer",
+  "Experience.Eleken.Timespan": "November 2018 - April 2019",
+  "Experience.Eleken.Description": "The company specializes in outsourcing. My position was the full-stack developer on the project Bytelyfe.app and the front-end developer on the project share.link.",
+
+  "Experience.Lun.Headline": "Lun",
+  "Experience.Lun.Position": "Full Stack Web Developer",
+  "Experience.Lun.Timespan": "April 2019 - Present",
+  "Experience.Lun.Description": "I am a developer of the marketing team. Working in a cross-functional team, I perform a variety of tasks. They are diverse: from the landing pages implementation for the marketing campaigns to the development and maintenance of the LunMisto website.",
+
   "Projects.SectionTitle": "My Projects",
   "Projects.Inzite.Overview": "Advice web-platform. I have implemented new features and improved existing functionality while working as part of development team.",
   "Projects.ViewButton": "View Project",

@@ -14,17 +14,27 @@
   "TopMenu.Items.Experience": "Опыт",
   "TopMenu.Items.Projects": "Проекты",
   "Experience.SectionTitle": "Опыт",
+  
   "Experience.Undergraduate.Headline": "Национальный Авиационный Университет",
   "Experience.Undergraduate.Position": "Студент",
   "Experience.Undergraduate.Timespan": "Сентябрь 2015 - Сейчас",
-  "Experience.Undergraduate.Description": "Студент четвертого курса специальности \"Инженерия програмного обеспечения\" Национального Авиационного Университета",
+  "Experience.Undergraduate.Description": "Студент пятого курса специальности \"Инженерия програмного обеспечения\" Национального Авиационного Университета",
+  
   "Experience.Inzite.Headline": "Inzite LTD",
   "Experience.Inzite.Position": "Full Stack веб разработчик",
   "Experience.Inzite.Timespan": "Октябрь 2017 - Август 2018",
   "Experience.Inzite.Description": "Я был членом команды разработки, выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей веб-платформы.",
-  "Experience.SelfImprovement.Headline": "Саморазвитие",
-  "Experience.SelfImprovement.Timespan": "Сентябрь 2018 - Сейчас",
-  "Experience.SelfImprovement.Description": "Изучение веб-технологий и реализация веб-приложений на их основе.",
+
+  "Experience.Eleken.Headline": "Eleken",
+  "Experience.Eleken.Position": "Full Stack веб разработчик",
+  "Experience.Eleken.Timespan": "Ноябрь 2018 - Апрель 2019",
+  "Experience.Eleken.Description": "Компания специализируется на аутсорсинге. Я выполнял роль full-stack разработчика в проекте Bytelyfe.app и роль front-end разработчика в проекте share.link.",
+
+  "Experience.Lun.Headline": "ЛУН",
+  "Experience.Lun.Position": "Full Stack веб разработчик",
+  "Experience.Lun.Timespan": "Апрель 2019 - Текущее время",
+  "Experience.Lun.Description": "Я разработчик маркетинговой команды. Работая в кросс-функциональной команде, я выполняю разнообразные задачи: от внедрения целевых страниц для маркетинговых кампаний до разработки и поддержки веб-сайта Лун Місто.",
+
   "Projects.SectionTitle": "Мои проекты",
   "Projects.Inzite.Overview": "Веб-платформа по предоставлению онлайн-консультаций. Я был членом команды разработки, выполняя работы по улучшению функционала сервиса, а также реализации новых возможностей веб-платформы.",
   "Projects.ViewButton": "Осмотреть проект",

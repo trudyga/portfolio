@@ -109,6 +109,7 @@ const AboutMe = () => (
             <Skill>Node JS</Skill>
             <Skill>Graph QL</Skill>
             <Skill>REST</Skill>
+            <Skill>MySQL</Skill>
             <Skill>NoSQL</Skill>
             <Skill>Docker</Skill>
           </GroupSkills>

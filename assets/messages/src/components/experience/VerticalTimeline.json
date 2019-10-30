@@ -13,7 +13,7 @@
   },
   {
     "id": "Experience.Undergraduate.Description",
-    "defaultMessage": "The fourth year student of the speciality \"Software engineering\" of the National Aviation University"
+    "defaultMessage": "The fifth year student of the speciality \"Software engineering\" of the National Aviation University"
   },
   {
     "id": "Experience.Inzite.Headline",
@@ -32,16 +32,36 @@
     "defaultMessage": "I was a member of development team. I was working on service improvement and implementation of new web-platform features."
   },
   {
-    "id": "Experience.SelfImprovement.Headline",
-    "defaultMessage": "Self Improvement"
+    "id": "Experience.Eleken.Headline",
+    "defaultMessage": "Eleken"
   },
   {
-    "id": "Experience.SelfImprovement.Timespan",
-    "defaultMessage": "September 2018 - Present"
+    "id": "Experience.Eleken.Position",
+    "defaultMessage": "Full Stack Web Developer"
   },
   {
-    "id": "Experience.SelfImprovement.Description",
-    "defaultMessage": "I am discovering new web technologies and implementing web applications based by them."
+    "id": "Experience.Eleken.Timespan",
+    "defaultMessage": "November 2018 - April 2019"
+  },
+  {
+    "id": "Experience.Eleken.Description",
+    "defaultMessage": "The company specializes in outsourcing. My position was the full-stack developer on the project bytelyfe.app and the front-end developer on the project share.link."
+  },
+  {
+    "id": "Experience.Lun.Headline",
+    "defaultMessage": "Lun"
+  },
+  {
+    "id": "Experience.Lun.Position",
+    "defaultMessage": "Full Stack Web Developer"
+  },
+  {
+    "id": "Experience.Lun.Timespan",
+    "defaultMessage": "April 2019 - Present"
+  },
+  {
+    "id": "Experience.Lun.Description",
+    "defaultMessage": "I am a developer of the marketing team. Working in a cross-functional team, I perform a variety of tasks. They are diverse: from the landing pages implementation for the marketing campaigns to the development and maintenance of the LunMisto website."
   },
   {
     "id": "Experience.SectionTitle",

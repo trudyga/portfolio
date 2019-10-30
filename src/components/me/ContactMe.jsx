@@ -47,7 +47,7 @@ const LinkText = styled.span`
 
 const ContactMe = () => (
   <Container>
-    <Creator>© 2018 Sereda Vladislav</Creator>
+    <Creator>© {new Date().getFullYear()} Sereda Vladislav</Creator>
     <Links>
       <StyledLink href="/assets/documents/resume.pdf" rel="noopener noreferrer" target="_blank">
         <LinkText>
