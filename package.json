@@ -79,7 +79,7 @@
     "serve": "^10.0.2",
     "stats.js": "^0.17.0",
     "styled-components": "^3.4.9",
-    "three": "^0.97.0",
+    "three": "^0.125.0",
     "throttle-debounce": "^2.0.1"
   }
 }
